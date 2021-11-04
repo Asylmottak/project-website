@@ -7,7 +7,7 @@ import styles from "@/styles/pages/steven/Steven.module.scss";
  * @return {JSX.Element} - The JSX code for Steven's page
  */
 const Steven: FC = (): JSX.Element => {
-  return <div className={styles.steven}>Steven</div>;
+  return <div className={styles.steven}>Hello name is Steven😄</div>;
 };
 
 export default Steven;
