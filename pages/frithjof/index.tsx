@@ -14,17 +14,19 @@ const Frithjof: FC = (): JSX.Element => {
   const projectCards: IProjectCardProps[] = [
     {
       title: "Pokemon",
-      description:
-        "Design project displaying different pokemon using the SpotifyAPI.",
       image:
         "https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg",
+      redirect: "/frithjof/pokemon",
+      description:
+        "Design project displaying different pokemon using the SpotifyAPI.",
     },
     {
       title: "Spotify",
-      description:
-        "Fullstack project using SpotifyAPI to integrate with your own Spotify account.",
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Spotify.png/640px-Spotify.png",
+      redirect: "/frithjof/spotify",
+      description:
+        "Fullstack project using SpotifyAPI to integrate with your own Spotify account.",
     },
   ];
 
@@ -39,8 +41,9 @@ const Frithjof: FC = (): JSX.Element => {
         {projectCards.map((p, key) => (
           <ProjectCard
             title={p.title}
-            description={p.description}
             image={p.image}
+            redirect={p.redirect}
+            description={p.description}
             key={key}
           />
         ))}
