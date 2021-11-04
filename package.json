@@ -1,6 +1,10 @@
 {
   "name": "next-js-template",
   "private": true,
+  "engines": {
+    "npm": "7.24.0",
+    "node": "16.10.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
