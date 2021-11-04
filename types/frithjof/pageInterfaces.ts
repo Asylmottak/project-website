@@ -1,10 +1,5 @@
 import { Product } from "@prisma/client";
 
-export interface IAppProps {
-  Component: any;
-  pageProps: any;
-}
-
 export interface IProductsProps {
   products: Product[];
 }

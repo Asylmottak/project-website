@@ -2,12 +2,16 @@ import React, { FC, useState } from "react";
 import { UserProvider } from "@auth0/nextjs-auth0";
 import Router from "next/router";
 
-import { IAppProps } from "../types/pageInterfaces";
-import Layout from "../components/Layout";
-import Loader from "../components/Loader";
+import Layout from "@/components/Layout";
+import Loader from "@/components/Loader";
 
-import "../styles/globals.scss";
+import "@/styles/globals.scss";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
+interface IAppProps {
+  Component: any;
+  pageProps: any;
+}
 
 /**
  * The main component for entire application

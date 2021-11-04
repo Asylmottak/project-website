@@ -1,8 +1,7 @@
 import React, { FC } from "react";
 
-import { defaultMeta } from "../utils/defaultData";
+import { defaultMeta } from "@/utils/frithjof/defaultData";
 import Meta from "./Meta";
-import Nav from "./Nav";
 
 interface ILayoutProps {
   children: JSX.Element;
@@ -21,7 +20,6 @@ const Layout: FC<ILayoutProps> = ({ children }): JSX.Element => {
         keywords={defaultMeta.keywords}
         description={defaultMeta.description}
       />
-      <Nav />
       {children}
     </>
   );

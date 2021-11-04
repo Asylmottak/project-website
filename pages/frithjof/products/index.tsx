@@ -1,14 +1,15 @@
 import React, { FC } from "react";
 import { Product } from "@prisma/client";
 import { GetServerSideProps } from "next";
+import Image from "next/image";
 
 import {
   IProductsProps,
   IProductsServerProps,
-} from "../../types/pageInterfaces";
-import prisma from "../../db";
+} from "@/types/frithjof/pageInterfaces";
+import prisma from "@/db/prisma";
 
-import styles from "../../styles/pages/Products.module.scss";
+import styles from "@/styles/pages/frithjof/Products.module.scss";
 
 /**
  * Fetches products from backend on server side
@@ -30,8 +31,14 @@ const Products: FC<IProductsProps> = ({ products }): JSX.Element => {
     <div className={styles.products}>
       {products.map((product: Product, key: number) => {
         return (
-          <div key={key}>
-            <a href={`/products/${product.id}`}>{product.name}</a>
+          <div className={styles.product} key={key}>
+            <Image
+              src={product.image}
+              alt={product.name}
+              width={100}
+              height={100}
+            />
+            <a href={`/frithjof/products/${product.id}`}>{product.name}</a>
           </div>
         );
       })}

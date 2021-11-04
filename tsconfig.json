@@ -1,6 +1,15 @@
 {
   "compilerOptions": {
-    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/db/*": ["db/*"],
+      "@/types/*": ["types/*"],
+      "@/utils/*": ["utils/*"],
+      "@/pages/*": ["pages/*"],
+      "@/styles/*": ["styles/*"],
+      "@/components/*": ["components/*"]
+    },
+    "allowJs": false,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "declaration": true,

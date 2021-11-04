@@ -3,10 +3,13 @@ import { Product } from "@prisma/client";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import Image from "next/image";
 
-import { IProductProps, IProductServerProps } from "../../types/pageInterfaces";
-import prisma from "../../db";
+import {
+  IProductProps,
+  IProductServerProps,
+} from "@/types/frithjof/pageInterfaces";
+import prisma from "@/db/prisma";
 
-import styles from "../../styles/pages/Product.module.scss";
+import styles from "@/styles/pages/frithjof/Product.module.scss";
 
 /**
  * Fetches product from provided product id in query
@@ -35,7 +38,7 @@ const Product: FC<IProductProps> = ({ product }): JSX.Element => {
   return (
     <div className={styles.product}>
       {product && (
-        <div className={styles.productCard}>
+        <div className={styles.card}>
           <Image
             src={product.image}
             alt={product.name}

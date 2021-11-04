@@ -22,7 +22,7 @@ const Nav: FC = (): JSX.Element => {
           <Link href="/about">About</Link>
         </li>
         <li>
-          <Link href="/products">Products</Link>
+          <Link href="/frithjof/products">Products</Link>
         </li>
         <div className={styles.navRight}>
           {!user ? (
