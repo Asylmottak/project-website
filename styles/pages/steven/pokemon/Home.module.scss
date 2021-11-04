@@ -1,8 +1,8 @@
 @import "@/styles/imports/colors";
 @import "@/styles/imports/mixins";
 
-.steven {
+.home {
   @include flexCenter;
-  height: 100vh;
   flex-direction: column;
+  margin-bottom: 100px;
 }
