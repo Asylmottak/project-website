@@ -1,2 +1,8 @@
 @import "./colors";
 @import "./sizes";
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

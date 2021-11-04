@@ -2,7 +2,7 @@
 
 body {
   color: $white;
-  background-color: $dark;
+  background: linear-gradient(0deg, $black, $dark);
   font-family: Oxygen;
   overscroll-behavior: none;
   padding: 0;

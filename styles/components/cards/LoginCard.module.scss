@@ -1,7 +1,33 @@
 @import "@/styles/imports/colors";
 
 .card {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+
+  h1 {
+    color: $white;
+    margin: 0;
+  }
+
   p {
+    color: rgba($white, 0.7);
     font-weight: 100;
   }
+
+  button {
+    margin-top: 25px;
+  }
+}
+
+.images {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70px;
+  margin: auto 0 15px 0;
 }
