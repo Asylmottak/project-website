@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 
+import LoginCard from "@/components/cards/LoginCard";
+
 import styles from "@/styles/pages/Home.module.scss";
-import Link from "next/link";
 
 /**
  * This is the home page
@@ -10,7 +11,7 @@ import Link from "next/link";
 const Home: FC = (): JSX.Element => {
   return (
     <div className={styles.home}>
-      <Link href="/frithjof">Frithjof</Link>
+      <LoginCard />
     </div>
   );
 };
