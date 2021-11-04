@@ -17,13 +17,12 @@ const Frithjof: FC = (): JSX.Element => {
     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Spotify.png/640px-Spotify.png";
 
   return (
-    <div className={styles.frithjof}>
+    <div
+      className={styles.frithjof}
+      style={{ backgroundImage: `url(${paintImage.src})` }}
+    >
       <Nav />
       <h1 className={styles.title}>Frithjof Thorvik</h1>
-      <div className={styles.images}>
-        <img src={paintImage.src} alt="Paint" />
-        <img src={paintImage.src} alt="Paint" />
-      </div>
       <div className={styles.section}>
         <ProjectCard
           title="Pokemon"
@@ -35,6 +34,26 @@ const Frithjof: FC = (): JSX.Element => {
           description="Fullstack project using SpotifyAPI to integrate with your own Spotify account."
           image={spotifyImage}
         />
+        <ProjectCard
+          title="Pokemon"
+          description="Design project displaying different pokemon using the SpotifyAPI."
+          image={pokemonImage}
+        />
+        {/* <ProjectCard
+          title="Spotify"
+          description="Fullstack project using SpotifyAPI to integrate with your own Spotify account."
+          image={spotifyImage}
+        />
+        <ProjectCard
+          title="Spotify"
+          description="Fullstack project using SpotifyAPI to integrate with your own Spotify account."
+          image={spotifyImage}
+        />
+        <ProjectCard
+          title="Spotify"
+          description="Fullstack project using SpotifyAPI to integrate with your own Spotify account."
+          image={spotifyImage}
+        /> */}
       </div>
     </div>
   );
