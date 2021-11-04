@@ -1,7 +1,43 @@
 @import "@/styles/imports/colors";
 @import "@/styles/imports/mixins";
+@import url("http://fonts.cdnfonts.com/css/brittany-signature");
 
 .frithjof {
-  @include flexCenter;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
   height: 100vh;
+  padding-top: 50px;
+}
+
+.title {
+  font-family: "Brittany Signature", sans-serif;
+  font-size: 40px;
+}
+
+.images {
+  width: 100vw;
+
+  img {
+    position: absolute;
+    transform: translate(0, -50%);
+    top: 50%;
+    height: 300px;
+
+    &:first-child  {
+      left: 0;
+    }
+
+    &:last-child {
+      right: 0;
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.section {
+  @include flexCenter;
+  width: 100%;
+  margin: 100px 0;
 }

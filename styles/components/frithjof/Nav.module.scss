@@ -1,0 +1,32 @@
+@import "@/styles/imports/colors";
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+
+  ul {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    justify-content: flex-start;
+    width: 100%;
+
+    li {
+      margin: 0 25px;
+    }
+  }
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 25px 0 auto;
+
+  img {
+    border-radius: 50%;
+  }
+}

@@ -3,7 +3,7 @@ import { useUser } from "@auth0/nextjs-auth0";
 import Image from "next/image";
 import Link from "next/link";
 
-import styles from "../styles/components/Nav.module.scss";
+import styles from "@/styles/components/frithjof/Nav.module.scss";
 
 /**
  * The nav component used on all pages of the application.
@@ -19,9 +19,6 @@ const Nav: FC = (): JSX.Element => {
           <Link href="/">Home</Link>
         </li>
         <li>
-          <Link href="/about">About</Link>
-        </li>
-        <li>
           <Link href="/frithjof/products">Products</Link>
         </li>
         <div className={styles.navRight}>
@@ -31,9 +28,9 @@ const Nav: FC = (): JSX.Element => {
             </li>
           ) : (
             <>
-              <li>
+              {/* <li>
                 <Link href="/api/auth/logout">Logout</Link>
-              </li>
+              </li> */}
               {user.picture && (
                 <Image
                   src={user.picture}
