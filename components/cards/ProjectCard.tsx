@@ -5,7 +5,7 @@ import Card from "./Card";
 import Button from "../Button";
 import UtilFunctions from "@/utils/functions";
 
-interface IProjectCardProps {
+export interface IProjectCardProps {
   title: string;
   description: string;
   image: string;
