@@ -1,0 +1,24 @@
+@import "./imports/colors";
+
+html,
+body {
+  color: $white;
+  background-color: $dark;
+  font-family: Oxygen;
+  overscroll-behavior: none;
+  padding: 0;
+  margin: 0;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}

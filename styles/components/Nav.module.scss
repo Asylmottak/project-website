@@ -1,0 +1,39 @@
+@import "../imports/colors";
+@import "../imports/sizes";
+
+.nav {
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: flex-start;
+  color: $white;
+  background: $dark;
+  height: $nav-height;
+  top: 0;
+  width: 100%;
+  padding: 10px;
+  box-shadow: 0 10px 10px -10px rgba($black, 0.5);
+
+  ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  ul li a {
+    margin: 5px 15px;
+  }
+}
+
+.navRight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+
+  img {
+    border-radius: 50%;
+  }
+}

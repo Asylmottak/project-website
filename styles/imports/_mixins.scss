@@ -1,0 +1,12 @@
+@import "./colors";
+@import "./sizes";
+
+@mixin page {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  top: $nav-height;
+  min-height: calc(100vh - $nav-height);
+  width: 100%;
+}

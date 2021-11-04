@@ -1,0 +1,32 @@
+@import "../imports/colors";
+@import "../imports/mixins";
+
+.product {
+  @include page;
+}
+
+.productCard {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-shadow: 0 0 10px 10px rgba($black, 0.7);
+  border-radius: 5px;
+  width: 350px;
+  height: 450px;
+
+  img {
+    margin: 10px;
+    width: 100px;
+  }
+
+  h1 {
+    margin: 15px 0;
+  }
+
+  p {
+    color: rgba($white, 0.5);
+    font-weight: 100;
+  }
+}

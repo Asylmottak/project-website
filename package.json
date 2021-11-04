@@ -1,0 +1,42 @@
+{
+  "name": "next-js-template",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "heroku-postbuild": "npm run build",
+    "check-types": "tsc --pretty --noEmit",
+    "check-format": "npx prettier --check .",
+    "check-lint": "eslint \"**/*.{js,ts,tsx}\" --fix --max-warnings=0",
+    "format": "npx prettier --write .",
+    "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@auth0/nextjs-auth0": "^1.6.1",
+    "@prisma/client": "^3.4.0",
+    "axios": "^0.24.0",
+    "next": "12.0.2",
+    "next-auth": "^3.29.0",
+    "prisma": "^3.4.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-loader-spinner": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "@types/react": "^17.0.33",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "eslint": "^7.32.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-next": "12.0.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.26.1",
+    "husky": "^7.0.0",
+    "prettier": "^2.4.1",
+    "sass": "^1.43.4",
+    "typescript": "^4.4.4"
+  }
+}
