@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import Loading from "react-loader-spinner";
 
 import { ILoaderProps } from "@/types/interfaces";

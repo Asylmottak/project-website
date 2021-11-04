@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import { UserProvider } from "@auth0/nextjs-auth0";
 import Router from "next/router";
 

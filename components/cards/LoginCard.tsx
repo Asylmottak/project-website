@@ -3,11 +3,11 @@ import Image from "next/image";
 
 import Card from "./Card";
 import Button from "@/components/Button";
+import UtilFunctions from "@/utils/functions";
 import googleImage from "@/assets/google.png";
 import githubImage from "@/assets/github.png";
 
 import styles from "@/styles/components/cards/LoginCard.module.scss";
-import UtilFunctions from "@/utils/functions";
 
 /**
  * LoginCard component

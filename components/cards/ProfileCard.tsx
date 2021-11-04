@@ -3,10 +3,10 @@ import { useUser } from "@auth0/nextjs-auth0";
 import Image from "next/image";
 
 import Card from "./Card";
-
-import styles from "@/styles/components/cards/ProfileCard.module.scss";
 import Button from "../Button";
 import UtilFunctions from "@/utils/functions";
+
+import styles from "@/styles/components/cards/ProfileCard.module.scss";
 
 /**
  * LoginCard component

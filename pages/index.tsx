@@ -1,12 +1,12 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useUser } from "@auth0/nextjs-auth0";
 
+import Button from "@/components/Button";
+import UtilFunctions from "@/utils/functions";
 import LoginCard from "@/components/cards/LoginCard";
 import ProfileCard from "@/components/cards/ProfileCard";
 
 import styles from "@/styles/pages/Home.module.scss";
-import Button from "@/components/Button";
-import UtilFunctions from "@/utils/functions";
 
 /**
  * This is the home page
