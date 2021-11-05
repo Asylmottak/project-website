@@ -2,36 +2,11 @@ import { FC, useState } from "react";
 
 import Nav from "@/components/frithjof/Nav";
 
-import styles from "@/styles/pages/frithjof/design/Design.module.scss";
-import ButtonSelector from "@/components/frithjof/ButtonSelector";
 import { IButtonSelectorState } from "@/types/interfaces";
-import NeonButton from "@/components/NeonButton";
-import Typewriter from "@/components/frithjof/Typewriter";
-import Card from "@/components/cards/Card";
+import { initialDesignState } from "@/utils/frithjof/data";
 import UtilFunctions from "@/utils/functions";
-
-// Create initial design state that should be available to display on the page
-const initialDesignState: IButtonSelectorState[] = [
-  {
-    name: "Neon Button",
-    active: false,
-    component: <NeonButton />,
-  },
-  {
-    name: "Typewriter",
-    active: false,
-    component: <Typewriter text="This is a typewriter made with scss!" />,
-  },
-  {
-    name: "Rainbow Card",
-    active: true,
-    component: (
-      <Card>
-        <p>This is a card!</p>
-      </Card>
-    ),
-  },
-];
+import ButtonSelector from "@/components/frithjof/ButtonSelector";
+import styles from "@/styles/pages/frithjof/design/Design.module.scss";
 
 interface IDesignProps {}
 
@@ -61,7 +36,7 @@ const Design: FC<IDesignProps> = (): JSX.Element => {
     <div className={styles.designs}>
       <Nav />
       <h1>Designs</h1>
-      <ButtonSelector states={initialDesignState} toggle={toggleDesign} />
+      <ButtonSelector states={state} toggle={toggleDesign} />
       <div className={styles.design}>
         {state[0].active && <h1>Neon Button</h1>}
         {state[1].active && <h1>Type Writer</h1>}

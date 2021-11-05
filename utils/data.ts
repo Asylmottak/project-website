@@ -1,7 +1,16 @@
+import { IUserCardProps } from "@/components/cards/UserCard";
+import { IUser } from "@/types/interfaces";
+
 export const defaultMeta = {
   title: "Steinan Projects",
   keywords: "web development, programming, next.js, steinan",
   description: "Projects that was born & brewed in Steinan Valley",
+};
+
+export const initialUser: IUser = {
+  name: "",
+  email: "",
+  image: "",
 };
 
 export const imageUrls = {
@@ -14,3 +23,21 @@ export const imageUrls = {
   frithjof: "https://avatars.githubusercontent.com/u/46748987?v=4",
   sander: "https://avatars.githubusercontent.com/u/63877507?v=4",
 };
+
+export const userCards: IUserCardProps[] = [
+  {
+    name: "Steven Francis",
+    image: imageUrls.steven,
+    redirect: "/steven",
+  },
+  {
+    name: "Frithjof Thorvik",
+    image: imageUrls.frithjof,
+    redirect: "/frithjof",
+  },
+  {
+    name: "Sander Francis",
+    image: imageUrls.sander,
+    redirect: "/sander",
+  },
+];
