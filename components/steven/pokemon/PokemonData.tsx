@@ -5,7 +5,7 @@ import { capitalizeFirstLetter } from "@/utils/steven/pokemon/pokemonUtils";
 import PokemonAbility from "./PokemonAbility";
 import PokemonStat from "./PokemonStat";
 
-import styles from "@/styles/components/steven/pokemon/Card.module.css";
+import styles from "@/styles/components/steven/pokemon/PokemonData.module.css";
 
 interface Props {
   pokemon: Pokemon;

@@ -1,6 +1,6 @@
 import { abilityColors } from "@/utils/steven/pokemon/pokemonUtils";
 
-import styles from "@/styles/components/steven/pokemon/Stat.module.css";
+import styles from "@/styles/components/steven/pokemon/PokemonStat.module.css";
 
 const PokemonStat = ({ stat }: any) => {
   return (
