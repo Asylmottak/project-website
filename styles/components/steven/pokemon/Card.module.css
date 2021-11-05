@@ -120,12 +120,12 @@
 }
 
 .abilities {
-  margin: auto;
+  margin-top: 10px;
   overflow: hidden;
 }
 
 .stats {
-  margin: auto;
+  margin: 0px;
   width: 100%;
   overflow: hidden;
 }
