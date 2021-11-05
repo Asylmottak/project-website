@@ -1,8 +1,10 @@
 @import "@/styles/imports/colors";
 
-.design {
+.designs {
   display: flex;
-  justify-content: center;
   align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
   height: 100vh;
+  padding-top: 50px;
 }

@@ -1,0 +1,42 @@
+@import "@/styles/imports/colors";
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 800px;
+}
+
+.active,
+.idle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid $white;
+  transition: transform ease-in-out 100ms;
+  margin: 10px;
+  font-weight: 600;
+  padding: 10px 15px;
+  border-radius: 15px;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(0.95);
+    transition: transform ease-in-out 100ms;
+  }
+}
+
+.active {
+  color: $black;
+  background-color: $white;
+  box-shadow: 0 0 5px 5px rgba($black, 0.5), inset 0 0 5px 1px rgba($black, 0.5);
+}
+
+.idle {
+  background-color: transparent;
+  color: $white;
+  border: 2px solid $white;
+}

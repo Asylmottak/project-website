@@ -18,3 +18,9 @@ export interface ILoaderProps {
     | "MutatingDots"
     | "CradleLoader";
 }
+
+export interface IButtonSelectorState {
+  name: string;
+  active: boolean;
+  component: JSX.Element;
+}
