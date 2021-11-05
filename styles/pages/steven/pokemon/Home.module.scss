@@ -4,6 +4,5 @@
 .home {
   @include flexCenter;
   flex-direction: column;
-  margin-bottom: 100px;
   background-color: $dark;
 }

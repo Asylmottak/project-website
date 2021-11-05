@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
+import { Pokemon } from "@/types/steven/pokemon/pokemonInterfaces";
 import { getPokemonFromApi } from "@/utils/steven/pokemon/pokemonAPI";
+import { checkContentFillWindow } from "@/utils/steven/pokemon/pokemonUtils";
 
 import PokeCard from "./PokeCard";
 import Loading from "react-loader-spinner";
 
 import styles from "@/styles/components/steven/pokemon/List.module.css";
 import homeStyles from "@/styles/pages/steven/pokemon/Home.module.scss";
-import { Pokemon } from "@/types/steven/pokemon/pokemonInterfaces";
 
 const PokemonList = () => {
   const [pokemon, setPokemon] = useState<Pokemon[]>([]);
@@ -39,11 +40,11 @@ const PokemonList = () => {
         )
       );
       setPokemon((oldData) => [...oldData, ...pokemonData]);
-      setLoading(false);
+      setLoading(checkContentFillWindow());
     };
-    next && getPokemon();
+    next && loading && getPokemon();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
+  }, [pokemon, loading]);
 
   return (
     <div className={homeStyles.home}>
@@ -53,13 +54,17 @@ const PokemonList = () => {
             <PokeCard pokemon={pokemon} key={pokemon.id} />
           ))}
       </div>
-      <Loading
-        type="ThreeDots"
-        color="#273336"
-        secondaryColor="#00ff80"
-        height={50}
-        width={100}
-      />
+      <div className={styles.loading}>
+        {loading && (
+          <Loading
+            type="ThreeDots"
+            color="#273336"
+            secondaryColor="#00ff80"
+            height={50}
+            width={100}
+          />
+        )}
+      </div>
     </div>
   );
 };
