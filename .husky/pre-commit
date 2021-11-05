@@ -32,7 +32,7 @@ npm run check-types ||
 )
 
 # Check if build is valid
-echo '🛠️🛠️🛠️🛠️🛠️ Running Build Check 🛠️🛠️🛠️🛠️🛠️'
+echo '⚒️⚒️⚒️⚒️⚒️ Running Build Check ⚒️⚒️⚒️⚒️⚒️'
 
 npm run build ||
 (

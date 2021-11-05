@@ -30,7 +30,7 @@ const ProjectCard: FC<IProjectCardProps> = ({
     <Card>
       <div className={styles.card}>
         <img src={image} alt="ProjectImage" width={200} height={60} />
-        <h1>{title}</h1>
+        <h1 className={styles.title}>{title}</h1>
         <p>{description}</p>
         <Button
           text="View Project"

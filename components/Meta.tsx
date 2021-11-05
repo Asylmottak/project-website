@@ -25,14 +25,6 @@ const Meta: FC<IMetaProps> = ({
       <meta name="keywords" content={keywords} />
       <meta name="description" content={description} />
       <meta charSet="utf-8" />
-      <link
-        href={`https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap`}
-        rel="stylesheet"
-      />
-      <link
-        href={`http://fonts.cdnfonts.com/css/brittany-signature`}
-        rel="stylesheet"
-      />
       <link rel="icon" href="/favicon.ico" />
       <title>{title}</title>
     </Head>
