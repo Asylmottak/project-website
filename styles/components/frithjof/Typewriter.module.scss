@@ -1,36 +1,32 @@
 @import "@/styles/imports/colors";
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Source+Code+Pro:wght@200&display=swap");
 
-.typewriter {
+.text {
   overflow: hidden;
-  display: inline-flex;
-  word-break: break-all;
-  animation: t 3s steps(29) 1s forwards;
-  font-family: "Source Code Pro", sans-serif !important;
-  font-weight: 100;
-  width: 10px;
-  height: 1.2em;
-
-  &::before {
-    content: "";
-    display: inline-block;
-  }
+  white-space: nowrap;
+  font-family: "Source Code Pro", sans-serif;
+  color: $white;
+  margin: 0 auto;
+  border-right: 2px solid rgba($white, 0.8);
+  animation: typing 3.5s steps(30, end), blink-caret 0.5s step-end infinite;
+  letter-spacing: 0.15em;
 }
 
-@keyframes t {
-  100% {
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
     width: 100%;
   }
 }
 
-@keyframes typewriter {
+@keyframes blink-caret {
+  from,
   to {
-    left: 100%;
+    border-color: transparent;
   }
-}
-
-@keyframes blink {
-  to {
-    background: transparent;
+  50% {
+    border-color: rgba($white, 0.8);
   }
 }
