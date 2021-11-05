@@ -1,10 +1,9 @@
 import { FC } from "react";
-import { useUser } from "@auth0/nextjs-auth0";
 
-import Button from "@/components/Button";
-import UtilFunctions from "@/utils/functions";
-import LoginCard from "@/components/cards/LoginCard";
-import ProfileCard from "@/components/cards/ProfileCard";
+import { imageUrls } from "@/utils/data";
+import UserCard, { IUserCardProps } from "@/components/cards/UserCard";
+import Nav from "@/components/Nav";
+import GroundShadow from "@/components/GroundShadow";
 
 import styles from "@/styles/pages/Home.module.scss";
 
@@ -13,24 +12,38 @@ import styles from "@/styles/pages/Home.module.scss";
  * @return {JSX.Element} The JSX code for home page
  */
 const Home: FC = (): JSX.Element => {
-  const { user } = useUser();
+  const userCards: IUserCardProps[] = [
+    {
+      name: "Steven Francis",
+      image: imageUrls.steven,
+      redirect: "/steven",
+    },
+    {
+      name: "Frithjof Thorvik",
+      image: imageUrls.frithjof,
+      redirect: "/frithjof",
+    },
+    {
+      name: "Sander Francis",
+      image: imageUrls.sander,
+      redirect: "/sander",
+    },
+  ];
 
   return (
     <div className={styles.home}>
-      {!user ? <LoginCard /> : <ProfileCard />}
+      <Nav />
+      <h1 className={styles.title}>Steinan Projects</h1>
+      <GroundShadow color="white" />
       <div className={styles.admins}>
-        <Button
-          text="Steven"
-          onClick={() => UtilFunctions.redirect("/steven")}
-        />
-        <Button
-          text="Frithjof"
-          onClick={() => UtilFunctions.redirect("/frithjof")}
-        />
-        <Button
-          text="Sander"
-          onClick={() => UtilFunctions.redirect("/sander")}
-        />
+        {userCards.map((user, key) => (
+          <UserCard
+            name={user.name}
+            image={user.image}
+            redirect={user.redirect}
+            key={key}
+          />
+        ))}
       </div>
     </div>
   );
