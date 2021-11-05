@@ -1,9 +1,10 @@
 import { FC } from "react";
 
-import Nav from "@/components/frithjof/Nav";
-import paintImage from "@/assets/paint.png";
 import { imageUrls } from "@/utils/data";
 import ProjectCard, { IProjectCardProps } from "@/components/cards/ProjectCard";
+import Nav from "@/components/frithjof/Nav";
+import paintImage from "@/assets/paint.png";
+import Typewriter from "@/components/frithjof/Typewriter";
 
 import styles from "@/styles/pages/frithjof/Frithjof.module.scss";
 
@@ -35,7 +36,8 @@ const Frithjof: FC = (): JSX.Element => {
       style={{ backgroundImage: `url(${paintImage.src})` }}
     >
       <Nav />
-      <h1 className={styles.title}>Frithjof Thorvik</h1>
+      {/* <h1 className={styles.title}>Frithjof Thorvik</h1> */}
+      <Typewriter />
       <div className={styles.section}>
         {projectCards.map((p, key) => (
           <ProjectCard
