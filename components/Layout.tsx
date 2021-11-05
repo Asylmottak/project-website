@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { defaultMeta } from "@/utils/defaultData";
+import { defaultMeta } from "@/utils/data";
 import Meta from "./Meta";
 
 interface ILayoutProps {
