@@ -3,10 +3,11 @@ import { Pokemon } from "@/types/steven/pokemon/pokemonInterfaces";
 import { getPokemonFromApi } from "@/utils/steven/pokemon/pokemonAPI";
 import { checkContentFillWindow } from "@/utils/steven/pokemon/pokemonUtils";
 
-import PokeCard from "./PokeCard";
+import PokeData from "./PokeData";
 import Loading from "react-loader-spinner";
+import HoverCard from "@/components/cards/HoverCard";
+import List from "../../List";
 
-import styles from "@/styles/components/steven/pokemon/List.module.css";
 import homeStyles from "@/styles/pages/steven/pokemon/Home.module.scss";
 
 const PokemonList = () => {
@@ -48,13 +49,14 @@ const PokemonList = () => {
 
   return (
     <div className={homeStyles.home}>
-      <div className={styles.pokemonList}>
-        {pokemon &&
-          pokemon.map((pokemon) => (
-            <PokeCard pokemon={pokemon} key={pokemon.id} />
-          ))}
-      </div>
-      <div className={styles.loading}>
+      <List gap={200}>
+        {pokemon.map((pokemon) => (
+          <HoverCard width={300} height={340} key={pokemon.id}>
+            <PokeData pokemon={pokemon} />
+          </HoverCard>
+        ))}
+      </List>
+      <div style={{ marginBottom: "200px" }}>
         {loading && (
           <Loading
             type="ThreeDots"
