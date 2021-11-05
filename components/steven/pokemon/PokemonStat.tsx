@@ -2,7 +2,7 @@ import { abilityColors } from "@/utils/steven/pokemon/pokemonUtils";
 
 import styles from "@/styles/components/steven/pokemon/Stat.module.css";
 
-const Stat = ({ stat }: any) => {
+const PokemonStat = ({ stat }: any) => {
   return (
     <div className={styles.statContainer}>
       <div className={styles.stat}>
@@ -19,4 +19,4 @@ const Stat = ({ stat }: any) => {
   );
 };
 
-export default Stat;
+export default PokemonStat;

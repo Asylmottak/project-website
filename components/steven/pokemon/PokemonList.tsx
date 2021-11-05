@@ -3,7 +3,7 @@ import { Pokemon } from "@/types/steven/pokemon/pokemonInterfaces";
 import { getPokemonFromApi } from "@/utils/steven/pokemon/pokemonAPI";
 import { checkContentFillWindow } from "@/utils/steven/pokemon/pokemonUtils";
 
-import PokeData from "./PokeData";
+import PokeData from "./PokemonData";
 import Loading from "react-loader-spinner";
 import HoverCard from "@/components/cards/HoverCard";
 import List from "../../List";

@@ -2,8 +2,8 @@ import React from "react";
 import { Pokemon } from "@/types/steven/pokemon/pokemonInterfaces";
 import { capitalizeFirstLetter } from "@/utils/steven/pokemon/pokemonUtils";
 
-import Ability from "./Ability";
-import Stat from "./Stat";
+import PokemonAbility from "./PokemonAbility";
+import PokemonStat from "./PokemonStat";
 
 import styles from "@/styles/components/steven/pokemon/Card.module.css";
 
@@ -40,12 +40,12 @@ const PokeData: React.FunctionComponent<Props> = ({ pokemon }) => {
       <div className={styles.cardText}>
         <div className={styles.abilities}>
           {pokemon.abilities.slice(0, 1).map(({ ability }, index) => (
-            <Ability url={ability.url} key={index} />
+            <PokemonAbility url={ability.url} key={index} />
           ))}
         </div>
         <div className={styles.stats}>
           {pokemon.stats.slice(1, 5).map((stat, index) => (
-            <Stat stat={stat} key={index} />
+            <PokemonStat stat={stat} key={index} />
           ))}
         </div>
       </div>

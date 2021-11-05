@@ -11,7 +11,7 @@ interface IAbility {
   }[];
 }
 
-const Ability = ({ url }: any) => {
+const PokemonAbility = ({ url }: any) => {
   const [ability, setAbility] = useState<IAbility>();
 
   useEffect(() => {
@@ -30,4 +30,4 @@ const Ability = ({ url }: any) => {
     </div>
   );
 };
-export default Ability;
+export default PokemonAbility;
