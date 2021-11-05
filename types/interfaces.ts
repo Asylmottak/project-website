@@ -28,5 +28,4 @@ export interface ILoaderProps {
 export interface IButtonSelectorState {
   name: string;
   active: boolean;
-  component: JSX.Element;
 }

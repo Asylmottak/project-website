@@ -7,6 +7,9 @@ import { initialDesignState } from "@/utils/frithjof/data";
 import UtilFunctions from "@/utils/functions";
 import ButtonSelector from "@/components/frithjof/ButtonSelector";
 import styles from "@/styles/pages/frithjof/design/Design.module.scss";
+import NeonButton from "@/components/NeonButton";
+import Typewriter from "@/components/frithjof/Typewriter";
+import Card from "@/components/cards/Card";
 
 interface IDesignProps {}
 
@@ -25,8 +28,16 @@ const Design: FC<IDesignProps> = (): JSX.Element => {
   const toggleDesign = (index: number): void => {
     // Check if index is in scope of state length
     if (state.length > index) {
+      // Copy current state without reference
       const stateCopy: IButtonSelectorState[] =
         UtilFunctions.copyObjectWithoutRef(state);
+
+      // Disable all designs
+      for (let i = 0; i < stateCopy.length; i++) {
+        stateCopy[i].active = false;
+      }
+
+      // Toggle chosen design
       stateCopy[index].active = !stateCopy[index].active;
       setState(stateCopy);
     }
@@ -35,12 +46,20 @@ const Design: FC<IDesignProps> = (): JSX.Element => {
   return (
     <div className={styles.designs}>
       <Nav />
-      <h1>Designs</h1>
-      <ButtonSelector states={state} toggle={toggleDesign} />
       <div className={styles.design}>
-        {state[0].active && <h1>Neon Button</h1>}
-        {state[1].active && <h1>Type Writer</h1>}
-        {state[2].active && <h1>Rainbow Card</h1>}
+        {state[0].active && <NeonButton />}
+        {state[1].active && (
+          <Typewriter text="This is a typewriter made with scss!" />
+        )}
+        {state[2].active && (
+          <Card>
+            <h1>Hello</h1>
+          </Card>
+        )}
+      </div>
+      <div className={styles.selector}>
+        <h1>Designs</h1>
+        <ButtonSelector states={state} toggle={toggleDesign} />
       </div>
     </div>
   );
