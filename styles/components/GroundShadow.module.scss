@@ -1,0 +1,10 @@
+@import "@/styles/imports/colors";
+
+.shadow {
+  position: relative;
+  background-color: $white;
+  filter: blur(15px);
+  transform: perspective(50px) rotateX(70deg) scale(2, 0.7);
+  width: 50px;
+  height: 50px;
+}
