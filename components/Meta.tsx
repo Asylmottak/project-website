@@ -29,6 +29,10 @@ const Meta: FC<IMetaProps> = ({
         href={`https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap`}
         rel="stylesheet"
       />
+      <link
+        href={`http://fonts.cdnfonts.com/css/brittany-signature`}
+        rel="stylesheet"
+      />
       <link rel="icon" href="/favicon.ico" />
       <title>{title}</title>
     </Head>
