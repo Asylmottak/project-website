@@ -9,7 +9,7 @@ import {
 } from "@/types/frithjof/pageInterfaces";
 import prisma from "@/db/prisma";
 
-import styles from "@/styles/pages/frithjof/Product.module.scss";
+import styles from "@/styles/pages/frithjof/products/Product.module.scss";
 
 /**
  * Fetches product from provided product id in query

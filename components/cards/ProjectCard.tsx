@@ -1,9 +1,9 @@
 import { FC } from "react";
 
-import styles from "@/styles/components/cards/ProjectCard.module.scss";
 import Card from "./Card";
-import Button from "../Button";
 import UtilFunctions from "@/utils/functions";
+
+import styles from "@/styles/components/cards/ProjectCard.module.scss";
 
 export interface IProjectCardProps {
   title: string;
@@ -27,15 +27,11 @@ const ProjectCard: FC<IProjectCardProps> = ({
   description,
 }): JSX.Element => {
   return (
-    <Card>
+    <Card onClick={() => UtilFunctions.redirect(redirect)}>
       <div className={styles.card}>
         <img src={image} alt="ProjectImage" width={200} height={60} />
         <h1 className={styles.title}>{title}</h1>
         <p>{description}</p>
-        <Button
-          text="View Project"
-          onClick={() => UtilFunctions.redirect(redirect)}
-        />
       </div>
     </Card>
   );

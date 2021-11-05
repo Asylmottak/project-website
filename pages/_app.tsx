@@ -1,9 +1,11 @@
 import { FC, useState } from "react";
+import { Provider } from "react-redux";
 import { UserProvider } from "@auth0/nextjs-auth0";
 import Router from "next/router";
 
 import Layout from "@/components/Layout";
 import Loader from "@/components/Loader";
+import { store } from "@/utils/store";
 
 import "@/styles/globals.scss";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -35,7 +37,13 @@ const App: FC<IAppProps> = ({ Component, pageProps }): JSX.Element => {
   return (
     <UserProvider>
       <Layout>
-        {isLoading ? <Loader loader="Circles" /> : <Component {...pageProps} />}
+        <Provider store={store}>
+          {isLoading ? (
+            <Loader loader="Circles" />
+          ) : (
+            <Component {...pageProps} />
+          )}
+        </Provider>
       </Layout>
     </UserProvider>
   );
