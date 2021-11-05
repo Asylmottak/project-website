@@ -16,23 +16,26 @@
 
 .hoverCard:hover ~ .rgb {
   background: linear-gradient(
-      45deg,
-      #ff0000 0%,
-      #ff8000 10%,
-      #ffff00 20%,
-      #80ff00 30%,
-      #00ff80 40%,
-      #00ffff 50%,
-      #0080ff 60%,
-      #0000ff 70%,
-      #7f00ff 80%,
-      #ff00ff 90%,
-      #ff007f 100%
-    )
-    repeat 0% 0% / 300% 100%;
-  border-radius: 16px;
-  filter: blur(8px);
-  animation: rgb 6s linear infinite;
+    45deg,
+    #fb0094,
+    #0000ff,
+    #00ff00,
+    #ffff00,
+    #fb0094,
+    #0000ff,
+    #00ff00,
+    #ffff00,
+    #ff0000
+  );
+  width: calc(100% + 16px);
+  height: calc(100% + 16px);
+  animation: animate 20s linear infinite;
+  filter: blur(4px);
+  top: 2px;
+  left: 2px;
+  z-index: -1;
+  border-radius: 32px;
+  background-size: 400%;
 }
 
 @keyframes rgb {
