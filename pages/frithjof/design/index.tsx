@@ -1,15 +1,15 @@
 import { FC, useState } from "react";
 
-import Nav from "@/components/frithjof/Nav";
-
 import { IButtonSelectorState } from "@/types/interfaces";
 import { initialDesignState } from "@/utils/frithjof/data";
+import Card from "@/components/cards/Card";
+import Nav from "@/components/frithjof/Nav";
 import UtilFunctions from "@/utils/functions";
-import ButtonSelector from "@/components/frithjof/ButtonSelector";
-import styles from "@/styles/pages/frithjof/design/Design.module.scss";
+import Clock from "@/components/frithjof/Clock";
 import NeonButton from "@/components/NeonButton";
 import Typewriter from "@/components/frithjof/Typewriter";
-import Card from "@/components/cards/Card";
+import ButtonSelector from "@/components/frithjof/ButtonSelector";
+import styles from "@/styles/pages/frithjof/design/Design.module.scss";
 
 interface IDesignProps {}
 
@@ -56,6 +56,7 @@ const Design: FC<IDesignProps> = (): JSX.Element => {
             <h1>Hello</h1>
           </Card>
         )}
+        {state[3].active && <Clock size={250} />}
       </div>
       <div className={styles.selector}>
         <h1>Designs</h1>

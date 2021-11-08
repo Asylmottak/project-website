@@ -37,6 +37,10 @@ export const initialDesignState: IButtonSelectorState[] = [
   },
   {
     name: "Rainbow Card",
+    active: false,
+  },
+  {
+    name: "Clock",
     active: true,
   },
 ];
