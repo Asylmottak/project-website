@@ -18,9 +18,6 @@ const Nav: FC = (): JSX.Element => {
         <li>
           <Link href="/">Home</Link>
         </li>
-        <li>
-          <Link href="/frithjof/products">Products</Link>
-        </li>
         <div className={styles.navRight}>
           {!user ? (
             <li>
