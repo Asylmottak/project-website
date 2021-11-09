@@ -2,6 +2,8 @@ import { FC, useState } from "react";
 
 import { IButtonSelectorState } from "@/types/interfaces";
 import { initialDesignState } from "@/utils/frithjof/data";
+import image1 from "@/assets/google.png";
+import image2 from "@/assets/github.png";
 import Card from "@/components/cards/Card";
 import Nav from "@/components/frithjof/Nav";
 import UtilFunctions from "@/utils/functions";
@@ -10,6 +12,7 @@ import NeonButton from "@/components/NeonButton";
 import Typewriter from "@/components/frithjof/Typewriter";
 import ButtonSelector from "@/components/frithjof/ButtonSelector";
 import styles from "@/styles/pages/frithjof/design/Design.module.scss";
+import Carousel from "@/components/frithjof/Carousel";
 
 interface IDesignProps {}
 
@@ -57,6 +60,14 @@ const Design: FC<IDesignProps> = (): JSX.Element => {
           </Card>
         )}
         {state[3].active && <Clock size={250} />}
+        {state[4].active && (
+          <Carousel>
+            <img src={image1.src} alt="" />
+            <img src={image2.src} alt="" />
+            <img src={image1.src} alt="" />
+            <img src={image2.src} alt="" />
+          </Carousel>
+        )}
       </div>
       <div className={styles.selector}>
         <h1>Designs</h1>

@@ -41,6 +41,10 @@ export const initialDesignState: IButtonSelectorState[] = [
   },
   {
     name: "Clock",
+    active: false,
+  },
+  {
+    name: "Carousel",
     active: true,
   },
 ];

@@ -1,0 +1,85 @@
+@import "@/styles/imports/colors";
+
+.carousel {
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  width: calc(90vw + 10px);
+  height: 600px;
+}
+
+.sliderContainer {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: space-between;
+  justify-content: center;
+  background-color: rgba($white, 0.01);
+  height: 100%;
+  width: 100%;
+}
+
+.slider {
+  list-style: none;
+  position: relative;
+  transition: transform 250ms ease-in;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.slide {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+
+  img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.button {
+  cursor: pointer;
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  right: -40px;
+
+  &:first-child {
+    left: -40px;
+  }
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.navDot {
+  background-color: $white;
+  border: 0;
+  width: 15px;
+  height: 15px;
+  margin: 0 15px;
+  border-radius: 50%;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.activeSlide {
+  &.navDot {
+    background-color: black;
+  }
+}
