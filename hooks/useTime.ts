@@ -13,11 +13,11 @@ interface Date {
 // Returns current time
 const useTime = () => {
   const [date, setDate] = useState<Date>({
-    month: "02",
-    day: "15",
-    year: "1998",
-    hour: "13",
-    second: "37",
+    month: "00",
+    day: "00",
+    year: "00",
+    hour: "00",
+    second: "00",
     minute: "00",
   });
 
@@ -26,7 +26,7 @@ const useTime = () => {
     const interval = setInterval(() => {
       const date = new Date();
       const newDate: Date = {
-        month: date.getMonth().toString(),
+        month: (date.getMonth() + 1).toString(), // In javascript month starts with 0 for some reason
         day: date.getDate().toString(),
         year: date.getFullYear().toString(),
         hour: date.getHours().toString(),
