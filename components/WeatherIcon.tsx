@@ -1,4 +1,4 @@
-import { useUserWeather } from "hooks/weather";
+import { useUserWeather } from "hooks/useWeather";
 type WeatherIconProps = {
   size: number;
 };
