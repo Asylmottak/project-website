@@ -9,6 +9,7 @@ import UserCard from "@/components/cards/UserCard";
 import GroundShadow from "@/components/GroundShadow";
 
 import styles from "@/styles/pages/Home.module.scss";
+import useTime from "hooks/useTime";
 
 /**
  * This is the home page
@@ -16,6 +17,7 @@ import styles from "@/styles/pages/Home.module.scss";
  */
 const Home: FC = (): JSX.Element => {
   const { user } = useUser();
+  const date = useTime();
   const dispatch = useStoreDispatch();
 
   /**
@@ -50,6 +52,12 @@ const Home: FC = (): JSX.Element => {
           />
         ))}
       </div>
+      <p className={styles.title} style={{ color: "white", fontSize: "50px" }}>
+        {date.hour}:{date.minute}:{date.second}
+      </p>
+      <p className={styles.title} style={{ color: "white", fontSize: "25px" }}>
+        {date.day}/{date.month}/{date.year}
+      </p>
     </div>
   );
 };
