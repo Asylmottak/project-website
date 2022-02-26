@@ -3,6 +3,7 @@ import { useUser } from "@auth0/nextjs-auth0";
 import Link from "next/link";
 
 import styles from "@/styles/components/Nav.module.scss";
+import { WeatherIcon } from "./WeatherIcon";
 
 /**
  * The nav component used on all pages of the application.
@@ -14,9 +15,7 @@ const Nav: FC = (): JSX.Element => {
   return (
     <nav className={styles.nav}>
       <ul>
-        {/* <li>
-          <Link href="/">Home</Link>
-        </li> */}
+        <WeatherIcon size={60} />
         <div className={styles.navRight}>
           {!user ? (
             <li>
