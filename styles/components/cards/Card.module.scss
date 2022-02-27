@@ -78,6 +78,8 @@
     pointer-events: none;
     background-color: $white;
     filter: blur(20px);
+    -ms-transform: scale(2, 0.5); /* IE 9 */
+    -webkit-transform: scale(2, 0.5); /* Chrome, Safari, Opera */
     transform: perspective(30px) rotateX(50deg) scale(2, 0.5);
     width: 50px;
     height: 50px;
