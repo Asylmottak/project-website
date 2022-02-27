@@ -1,20 +1,23 @@
 import { FC } from "react";
 
-// import Button from "@/components/Button";
-
 import styles from "@/styles/pages/steven/Steven.module.scss";
-// import UtilFunctions from "@/utils/functions";
 import Navbar from "@/components/steven/Navbar";
-// import HoverCard from "@/components/cards/HoverCard";
-
+import { projectCards } from "@/utils/steven/data";
+import ProjectCard from "@/components/steven/ProjectCard";
+import { WeatherIcon } from "@/components/WeatherIcon";
+import Tilt from "react-parallax-tilt";
 /**
  * Steven's main page
  * @return {JSX.Element} - The JSX code for Steven's page
  */
 const Steven: FC = (): JSX.Element => {
+  const previewCards = projectCards.slice(0, 4);
   return (
     <div className={styles.steven}>
       <Navbar />
+      <div className={styles.weather}>
+        <WeatherIcon size={60} />
+      </div>
       <div className={styles.content}>
         <div className={styles.text}>
           <h1>Hi! I am Steven</h1>
@@ -28,59 +31,35 @@ const Steven: FC = (): JSX.Element => {
             projects.
           </p>
         </div>
-        <div className={styles.cards}>
-          <div className={styles.card}>
-            <img src="/steven/home.jpg" alt="card" />
-            <h2>Project #1</h2>
-            <hr />
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-              aliquam dolor eget ex aliquam cursus. Duis nulla purus, facilisis
-              a urna eget, accumsan viverra orci. Donec fringilla ex non mauris
-              egestas, ac ultrices nisl tincidunt. Morbi posuere ex molestie
-              odio rutrum facilisis. Mauris sit amet blandit eros. Nullam
-              molestie purus.
-            </p>
-          </div>
-          <div className={styles.card}>
-            <img src="/steven/home.jpg" alt="card" />
-            <h2>Project #2</h2>
-            <hr />
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-              aliquam dolor eget ex aliquam cursus. Duis nulla purus, facilisis
-              a urna eget, accumsan viverra orci. Donec fringilla ex non mauris
-              egestas, ac ultrices nisl tincidunt. Morbi posuere ex molestie
-              odio rutrum facilisis. Mauris sit amet blandit eros. Nullam
-              molestie purus.
-            </p>
-          </div>
-          <div className={styles.card}>
-            <img src="/steven/home.jpg" alt="card" />
-            <h2>Project #3</h2>
-            <hr />
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-              aliquam dolor eget ex aliquam cursus. Duis nulla purus, facilisis
-              a urna eget, accumsan viverra orci. Donec fringilla ex non mauris
-              egestas, ac ultrices nisl tincidunt. Morbi posuere ex molestie
-              odio rutrum facilisis. Mauris sit amet blandit eros. Nullam
-              molestie purus.
-            </p>
-          </div>
-          <div className={styles.card}>
-            <img src="/steven/home.jpg" alt="card" />
-            <h2>Project #4</h2>
-            <hr />
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-              aliquam dolor eget ex aliquam cursus. Duis nulla purus, facilisis
-              a urna eget, accumsan viverra orci. Donec fringilla ex non mauris
-              egestas, ac ultrices nisl tincidunt. Morbi posuere ex molestie
-              odio rutrum facilisis. Mauris sit amet blandit eros. Nullam
-              molestie purus.
-            </p>
-          </div>
+        <div className={styles.previewCards}>
+          {previewCards.map((projectCard, index) => {
+            return (
+              <Tilt key={index}>
+                <ProjectCard
+                  title={projectCard.title}
+                  imagePath={projectCard.imagePath}
+                  text={projectCard.text}
+                  redirect={projectCard.redirect}
+                />
+              </Tilt>
+            );
+          })}
+        </div>
+      </div>
+      <div className={styles.projects}>
+        <h1>All projects</h1>
+        <div className={styles.allCards}>
+          {projectCards.map((projectCard, index) => {
+            return (
+              <ProjectCard
+                key={index}
+                title={projectCard.title}
+                imagePath={projectCard.imagePath}
+                text={projectCard.text}
+                redirect={projectCard.redirect}
+              />
+            );
+          })}
         </div>
       </div>
       <div className={styles.background} />
