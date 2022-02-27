@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@/db/*": ["db/*"],
+      "@/data/*": ["data/*"],
       "@/types/*": ["types/*"],
       "@/utils/*": ["utils/*"],
       "@/pages/*": ["pages/*"],

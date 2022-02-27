@@ -1,3 +1,9 @@
+export interface IUser {
+  name: string;
+  email: string;
+  image: string;
+}
+
 export interface ILoaderProps {
   loader:
     | "Audio"
@@ -17,4 +23,9 @@ export interface ILoaderProps {
     | "Plane"
     | "MutatingDots"
     | "CradleLoader";
+}
+
+export interface IButtonSelectorState {
+  name: string;
+  active: boolean;
 }

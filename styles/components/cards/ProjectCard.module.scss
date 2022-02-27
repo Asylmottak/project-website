@@ -9,7 +9,13 @@
   justify-content: flex-start;
   height: 100%;
   width: 100%;
-  padding-top: 40px;
+
+  img {
+    top: 0;
+    height: 75px;
+    width: auto;
+    margin-bottom: 25px;
+  }
 
   p {
     color: rgba($white, 0.7);
@@ -17,11 +23,8 @@
     margin-bottom: 25px;
   }
 
-  img {
-    position: absolute;
-    top: -70px;
-    height: 75px;
-    width: auto;
+  &:hover {
+    cursor: pointer;
   }
 }
 

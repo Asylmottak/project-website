@@ -1,9 +1,10 @@
 import { FC } from "react";
 
+import { projectCards } from "@/utils/frithjof/data";
 import Nav from "@/components/frithjof/Nav";
 import paintImage from "@/assets/paint.png";
-import { imageUrls } from "@/utils/data";
-import ProjectCard, { IProjectCardProps } from "@/components/cards/ProjectCard";
+import ProjectCard from "@/components/cards/ProjectCard";
+import Typewriter from "@/components/frithjof/Typewriter";
 
 import styles from "@/styles/pages/frithjof/Frithjof.module.scss";
 
@@ -12,30 +13,13 @@ import styles from "@/styles/pages/frithjof/Frithjof.module.scss";
  * @return {JSX.Element} - The JSX code for Frithjof page
  */
 const Frithjof: FC = (): JSX.Element => {
-  const projectCards: IProjectCardProps[] = [
-    {
-      title: "Pokemon",
-      image: imageUrls.pokemon,
-      redirect: "/frithjof/pokemon",
-      description:
-        "Design project displaying different pokemon using the SpotifyAPI.",
-    },
-    {
-      title: "Spotify",
-      image: imageUrls.spotify,
-      redirect: "/frithjof/spotify",
-      description:
-        "Fullstack project using SpotifyAPI to integrate with your own Spotify account.",
-    },
-  ];
-
   return (
     <div
       className={styles.frithjof}
       style={{ backgroundImage: `url(${paintImage.src})` }}
     >
       <Nav />
-      <h1 className={styles.title}>Frithjof Thorvik</h1>
+      <Typewriter text="Hello, my name is Frithjof..." />
       <div className={styles.section}>
         {projectCards.map((p, key) => (
           <ProjectCard

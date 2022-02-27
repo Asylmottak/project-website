@@ -1,34 +1,41 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
+import { useUser } from "@auth0/nextjs-auth0";
 
-import { imageUrls } from "@/utils/data";
-import UserCard, { IUserCardProps } from "@/components/cards/UserCard";
+import { loginUser } from "@/data/user";
+import { userCards } from "@/utils/data";
+import { useStoreDispatch } from "hooks/useStore";
 import Nav from "@/components/Nav";
+import UserCard from "@/components/cards/UserCard";
 import GroundShadow from "@/components/GroundShadow";
 
 import styles from "@/styles/pages/Home.module.scss";
+import useTime from "hooks/useTime";
 
 /**
  * This is the home page
  * @return {JSX.Element} The JSX code for home page
  */
 const Home: FC = (): JSX.Element => {
-  const userCards: IUserCardProps[] = [
-    {
-      name: "Steven Francis",
-      image: imageUrls.steven,
-      redirect: "/steven",
-    },
-    {
-      name: "Frithjof Thorvik",
-      image: imageUrls.frithjof,
-      redirect: "/frithjof",
-    },
-    {
-      name: "Sander Francis",
-      image: imageUrls.sander,
-      redirect: "/sander",
-    },
-  ];
+  const { user } = useUser();
+  const date = useTime();
+  const dispatch = useStoreDispatch();
+
+  /**
+   * Add logged in user to redux user store
+   */
+  useEffect(() => {
+    // Check if user exist
+    if (user) {
+      // Add user to user store
+      dispatch(
+        loginUser({
+          name: user.name,
+          email: user.email,
+          image: user.picture,
+        })
+      );
+    }
+  }, [user, dispatch]);
 
   return (
     <div className={styles.home}>
@@ -45,6 +52,12 @@ const Home: FC = (): JSX.Element => {
           />
         ))}
       </div>
+      <p className={styles.title} style={{ color: "white", fontSize: "50px" }}>
+        {date.hour}:{date.minute}:{date.second}
+      </p>
+      <p className={styles.title} style={{ color: "white", fontSize: "25px" }}>
+        {date.day}/{date.month}/{date.year}
+      </p>
     </div>
   );
 };
