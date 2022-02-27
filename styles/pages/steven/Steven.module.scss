@@ -201,15 +201,6 @@
     place-content: center;
   }
 
-  // @media only screen and (max-width: 1700px) {
-  //   .text {
-  //     padding-left: 5em;
-  //   }
-  //   .previewCards {
-  //     gap: 1.5em;
-  //   }
-  // }
-
   @media only screen and (max-width: 1300px) {
     align-items: center;
     flex-direction: column;
@@ -224,5 +215,15 @@
     .previewCards {
       display: none;
     }
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .weather {
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px; /* Need a specific value to work */
   }
 }
