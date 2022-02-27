@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { getPokemonFromApi } from "@/utils/steven/pokemon/pokemonAPI";
-
-import PokeCard from "./PokeCard";
-import Loading from "react-loader-spinner";
-
-import styles from "@/styles/components/steven/pokemon/List.module.css";
-import homeStyles from "@/styles/pages/steven/pokemon/Home.module.scss";
 import { Pokemon } from "@/types/steven/pokemon/pokemonInterfaces";
+import { getPokemonFromApi } from "@/utils/steven/pokemon/pokemonAPI";
+import { checkContentFillWindow } from "@/utils/steven/pokemon/pokemonUtils";
+
+import PokeData from "./PokemonData";
+import Loading from "react-loader-spinner";
+import HoverCard from "@/components/cards/HoverCard";
+import List from "../../List";
+
+import homeStyles from "@/styles/pages/steven/pokemon/Home.module.scss";
 
 const PokemonList = () => {
   const [pokemon, setPokemon] = useState<Pokemon[]>([]);
@@ -39,27 +41,32 @@ const PokemonList = () => {
         )
       );
       setPokemon((oldData) => [...oldData, ...pokemonData]);
-      setLoading(false);
+      setLoading(checkContentFillWindow());
     };
-    next && getPokemon();
+    next && loading && getPokemon();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
+  }, [pokemon, loading]);
 
   return (
     <div className={homeStyles.home}>
-      <div className={styles.pokemonList}>
-        {pokemon &&
-          pokemon.map((pokemon) => (
-            <PokeCard pokemon={pokemon} key={pokemon.id} />
-          ))}
+      <List gap={200}>
+        {pokemon.map((pokemon) => (
+          <HoverCard width={300} height={340} key={pokemon.id}>
+            <PokeData pokemon={pokemon} />
+          </HoverCard>
+        ))}
+      </List>
+      <div style={{ marginBottom: "200px" }}>
+        {loading && (
+          <Loading
+            type="ThreeDots"
+            color="#273336"
+            secondaryColor="#00ff80"
+            height={50}
+            width={100}
+          />
+        )}
       </div>
-      <Loading
-        type="ThreeDots"
-        color="#273336"
-        secondaryColor="#00ff80"
-        height={50}
-        width={100}
-      />
     </div>
   );
 };

@@ -1,0 +1,49 @@
+@import "@/styles/imports/colors";
+@import "@/styles/imports/sizes";
+
+.navbar {
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: flex-start;
+  color: $white;
+  background-color: $dark;
+  height: $nav-height;
+  z-index: 9999;
+  top: 0;
+  width: 100%;
+  padding: 10px;
+  font-family: "Red Hat Mono", monospace;
+  font-weight: 100;
+
+  ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-left: 0;
+  }
+
+  ul li {
+    a {
+      margin: 5px 15px;
+    }
+
+    &:hover {
+      transition: ease-in 0.1s;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.navbarRight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+
+  img {
+    border-radius: 50%;
+  }
+}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getAbilityFromApi } from "@/utils/steven/pokemon/pokemonAPI";
 import { capitalizeFirstLetter } from "@/utils/steven/pokemon/pokemonUtils";
 
-import styles from "@/styles/components/steven/pokemon/Ability.module.css";
+import styles from "@/styles/components/steven/pokemon/PokemonAbility.module.css";
 
 interface IAbility {
   name: string;
@@ -11,7 +11,7 @@ interface IAbility {
   }[];
 }
 
-const Ability = ({ url }: any) => {
+const PokemonAbility = ({ url }: any) => {
   const [ability, setAbility] = useState<IAbility>();
 
   useEffect(() => {
@@ -30,4 +30,4 @@ const Ability = ({ url }: any) => {
     </div>
   );
 };
-export default Ability;
+export default PokemonAbility;

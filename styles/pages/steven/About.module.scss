@@ -1,8 +1,8 @@
 @import "@/styles/imports/colors";
 @import "@/styles/imports/mixins";
 
-.home {
+.about {
   @include flexCenter;
+  height: 100vh;
   flex-direction: column;
-  background-color: $dark;
 }

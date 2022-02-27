@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import PokemonList from "@/components/steven/pokemon/PokemonList";
+import Navbar from "@/components/steven/Navbar";
 
 interface IPokemonProps {}
 
@@ -9,7 +10,12 @@ interface IPokemonProps {}
  * @return {JSX.Element} - The JSX code for Pokemon component
  */
 const Pokemon: FC<IPokemonProps> = (): JSX.Element => {
-  return <PokemonList />;
+  return (
+    <>
+      <Navbar />
+      <PokemonList />
+    </>
+  );
 };
 
 export default Pokemon;

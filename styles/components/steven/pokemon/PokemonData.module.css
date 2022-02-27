@@ -1,0 +1,64 @@
+.cardImage > img {
+  width: 200px;
+  height: 200px;
+  margin-top: -100px;
+  position: absolute;
+}
+
+.cardTitle {
+  padding: auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.cardTitle > h1 {
+  margin: 15px 10px 2px 5px;
+  font-size: 2rem;
+  color: #ffcc00;
+}
+
+.cardTitle > p {
+  margin: 5px 10px 2px 5px;
+  font-size: 0.8rem;
+  color: white;
+  font-weight: 200;
+  border-radius: 15px;
+  padding: 3px 7px;
+  border: 2px solid #dfdfdf;
+  background-color: #fb1b1b;
+}
+
+.cardTypes {
+  align-items: flex-start;
+  margin-top: -18px;
+  margin-left: -18px;
+}
+
+.cardTypes > img {
+  width: 75px;
+  margin-right: 3px;
+  position: relative;
+}
+
+.cardText {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+.abilities {
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.stats {
+  margin: 0px;
+  width: 100%;
+  overflow: hidden;
+}
