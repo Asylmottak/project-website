@@ -1,13 +1,31 @@
 @import "@/styles/imports/colors";
 @import "@/styles/imports/mixins";
 
+$project-bg-color: rgba($dark, 1);
+$custom_shape_divider_height: 75px;
+$front_page_min_height: 800px;
+$layout_change: 1400px; // Width under this value -> change layout
 .steven {
-  @include flexCenter;
-  min-height: 100vh;
-  flex-direction: column;
-  position: relative;
-  z-index: 1;
   font-family: "Red Hat Mono", monospace;
+}
+
+.parallax {
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  top: 0;
+  min-height: $front_page_min_height;
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(
+      to bottom,
+      rgba($pink, 0.01),
+      rgba($pink, 0.1)
+    ),
+    url("/steven/home.jpg");
 }
 
 .weather {
@@ -25,7 +43,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: linear-gradient(rgba($dark, 1), rgba($darkGray, 1));
+  background: $project-bg-color;
   z-index: -1;
 
   .allCards {
@@ -71,7 +89,7 @@
     width: 100%;
     border-radius: 3%;
     height: 100%;
-    z-index: -1;
+    z-index: 1;
   }
 
   h2 {
@@ -146,26 +164,8 @@
   }
 }
 
-.background {
-  position: absolute;
-  top: 0;
-  min-height: 800px;
-  height: 100vh;
-  width: 100vw;
-  background-image: linear-gradient(
-      to bottom,
-      rgba($pink, 0.01),
-      rgba($pink, 0.1)
-    ),
-    url("/steven/home.jpg");
-  background-size: cover;
-  background-attachment: scroll;
-  background-repeat: no-repeat;
-  z-index: -2;
-}
-
 .content {
-  min-height: 800px;
+  min-height: $front_page_min_height;
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -201,14 +201,14 @@
     place-content: center;
   }
 
-  @media only screen and (max-width: 1300px) {
+  @media only screen and (max-width: $layout_change) {
     align-items: center;
     flex-direction: column;
 
     .text {
       padding: 5em;
       width: 100%;
-      min-height: 800px;
+      min-height: $front_page_min_height;
       height: 100vh;
     }
 
@@ -218,12 +218,37 @@
   }
 }
 
-@media only screen and (max-width: 1300px) {
+.custom_shape_divider_top {
+  position: absolute;
+  top: calc(max(100vh, $front_page_min_height) - $custom_shape_divider_height);
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+
+  svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: $custom_shape_divider_height;
+  }
+  path {
+    fill: $project-bg-color;
+  }
+}
+
+@media only screen and (max-width: $layout_change) {
   .weather {
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
     width: 100px; /* Need a specific value to work */
+  }
+
+  /* Hide shape divider for small screens*/
+  .custom_shape_divider_top {
+    display: none;
   }
 }
