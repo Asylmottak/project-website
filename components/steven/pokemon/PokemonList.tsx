@@ -9,6 +9,7 @@ import HoverCard from "@/components/cards/HoverCard";
 import List from "../../List";
 
 import homeStyles from "@/styles/pages/steven/pokemon/Home.module.scss";
+import FadeInCard from "@/components/cards/FadeInCard";
 
 const PokemonList = () => {
   const [pokemon, setPokemon] = useState<Pokemon[]>([]);
@@ -51,9 +52,11 @@ const PokemonList = () => {
     <div className={homeStyles.home}>
       <List gap={200}>
         {pokemon.map((pokemon) => (
-          <HoverCard width={300} height={340} key={pokemon.id}>
-            <PokeData pokemon={pokemon} />
-          </HoverCard>
+          <FadeInCard key={pokemon.id}>
+            <HoverCard width={300} height={340}>
+              <PokeData pokemon={pokemon} />
+            </HoverCard>
+          </FadeInCard>
         ))}
       </List>
       <div style={{ marginBottom: "200px" }}>
