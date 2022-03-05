@@ -6,6 +6,7 @@ import { projectCards } from "@/utils/steven/data";
 import ProjectCard from "@/components/steven/ProjectCard";
 import { WeatherIcon } from "@/components/WeatherIcon";
 import Tilt from "react-parallax-tilt";
+import FadeInCard from "@/components/cards/FadeInCard";
 /**
  * Steven's main page
  * @return {JSX.Element} - The JSX code for Steven's page
@@ -75,13 +76,14 @@ const Steven: FC = (): JSX.Element => {
           <div className={styles.allCards}>
             {projectCards.map((projectCard, index) => {
               return (
-                <ProjectCard
-                  key={index}
-                  title={projectCard.title}
-                  imagePath={projectCard.imagePath}
-                  text={projectCard.text}
-                  redirect={projectCard.redirect}
-                />
+                <FadeInCard key={index}>
+                  <ProjectCard
+                    title={projectCard.title}
+                    imagePath={projectCard.imagePath}
+                    text={projectCard.text}
+                    redirect={projectCard.redirect}
+                  />
+                </FadeInCard>
               );
             })}
           </div>
