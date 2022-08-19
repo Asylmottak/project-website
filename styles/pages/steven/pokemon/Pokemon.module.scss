@@ -6,3 +6,11 @@
   flex-direction: column;
   background-color: $dark;
 }
+
+.container {
+  height: 100vh;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

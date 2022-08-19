@@ -1,0 +1,30 @@
+@import "@/styles/imports/colors";
+@import "@/styles/imports/mixins";
+
+.home {
+  @include flexCenter;
+  flex-direction: column;
+  background-color: black;
+}
+
+.container {
+  background-color: black;
+  height: 100vh;
+  margin-top: 100px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.item {
+  &__pokemon {
+    width: 90%;
+    height: 80%;
+    overflow-y: auto;
+    border-radius: 10px;
+    zoom: 0.7;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
