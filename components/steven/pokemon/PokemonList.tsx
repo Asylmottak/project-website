@@ -1,6 +1,4 @@
-import { useEffect, useState, FC } from "react";
-import { Pokemon } from "@/types/steven/pokemon/pokemonInterfaces";
-import { getPokemonFromApi } from "@/utils/steven/pokemon/pokemonAPI";
+import { useEffect, FC } from "react";
 
 import PokeData from "./PokemonData";
 import Loading from "react-loader-spinner";
@@ -9,6 +7,7 @@ import List from "../../List";
 
 import homeStyles from "@/styles/pages/steven/pokemon/Pokemon.module.scss";
 import FadeInCard from "@/components/cards/FadeInCard";
+import usePokemon from "hooks/usePokemon";
 
 const getScrollPosition = (ref: React.MutableRefObject<any>) => {
   const container = ref?.current;
@@ -19,14 +18,11 @@ const getScrollPosition = (ref: React.MutableRefObject<any>) => {
 
 interface IPokemonListProps {
   containerRef: React.MutableRefObject<any>;
+  color?: string;
 }
-const PokemonList: FC<IPokemonListProps> = ({ containerRef }) => {
-  const [pokemon, setPokemon] = useState<Pokemon[]>([]);
-  const [next, setNext] = useState(
-    "https://pokeapi.co/api/v2/pokemon?limit=10&offset=0"
-  );
+const PokemonList: FC<IPokemonListProps> = ({ containerRef, color }) => {
+  const [pokemon, loading, setLoading] = usePokemon();
 
-  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const container = containerRef?.current;
     const handleScroll = () => {
@@ -50,24 +46,8 @@ const PokemonList: FC<IPokemonListProps> = ({ containerRef }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pokemon]);
 
-  useEffect(() => {
-    const getPokemon = async () => {
-      let pokemonData = await getPokemonFromApi(next);
-      setNext(pokemonData.next);
-      pokemonData = await Promise.all(
-        pokemonData.results.map((pokemon: any) =>
-          getPokemonFromApi(pokemon.url)
-        )
-      );
-      setLoading(false);
-      setPokemon((oldData) => [...oldData, ...pokemonData]);
-    };
-    next && loading && getPokemon();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
-
   return (
-    <div className={homeStyles.home}>
+    <div className={homeStyles.home} style={{ background: color }}>
       <List gap={200}>
         {pokemon.map((pokemon) => (
           <FadeInCard key={pokemon.id} containerRef={containerRef}>
