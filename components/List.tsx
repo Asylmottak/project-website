@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import styles from "@/styles/components/steven/List.module.css";
+import styles from "@/styles/components/steven/List.module.scss";
 
 interface IListProps {
   children: JSX.Element[];

@@ -24,6 +24,9 @@ const Navbar: FC = (): JSX.Element => {
         <li>
           <Link href="/steven/pokemon">Pokemon</Link>
         </li>
+        <li>
+          <Link href="/steven/css-training">CSS</Link>
+        </li>
         <div className={styles.navbarRight}>
           {!user ? (
             <li>

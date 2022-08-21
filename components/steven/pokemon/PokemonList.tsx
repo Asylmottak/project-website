@@ -1,58 +1,56 @@
-import { useEffect, useState } from "react";
-import { Pokemon } from "@/types/steven/pokemon/pokemonInterfaces";
-import { getPokemonFromApi } from "@/utils/steven/pokemon/pokemonAPI";
-import { checkContentFillWindow } from "@/utils/steven/pokemon/pokemonUtils";
+import { useEffect, FC } from "react";
 
 import PokeData from "./PokemonData";
 import Loading from "react-loader-spinner";
 import HoverCard from "@/components/cards/HoverCard";
 import List from "../../List";
 
-import homeStyles from "@/styles/pages/steven/pokemon/Home.module.scss";
+import homeStyles from "@/styles/pages/steven/pokemon/Pokemon.module.scss";
 import FadeInCard from "@/components/cards/FadeInCard";
+import usePokemon from "hooks/usePokemon";
 
-const PokemonList = () => {
-  const [pokemon, setPokemon] = useState<Pokemon[]>([]);
-  const [next, setNext] = useState(
-    "https://pokeapi.co/api/v2/pokemon?limit=10&offset=0"
+const getScrollPosition = (ref: React.MutableRefObject<any>) => {
+  const container = ref?.current;
+  return (
+    container?.scrollHeight - container?.scrollTop - container?.offsetHeight
   );
+};
 
-  const [loading, setLoading] = useState(true);
+interface IPokemonListProps {
+  containerRef: React.MutableRefObject<any>;
+  color?: string;
+}
+const PokemonList: FC<IPokemonListProps> = ({ containerRef, color }) => {
+  const [pokemon, loading, setLoading] = usePokemon();
+
   useEffect(() => {
+    const container = containerRef?.current;
     const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop! <
-        document.documentElement.offsetHeight - 1
-      )
-        return;
-      setLoading(true);
+      setLoading(getScrollPosition(containerRef) < container.clientHeight);
     };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    container?.addEventListener("scroll", handleScroll);
+    return () => container?.removeEventListener("scroll", handleScroll);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    const getPokemon = async () => {
-      let pokemonData = await getPokemonFromApi(next);
-      setNext(pokemonData.next);
-      pokemonData = await Promise.all(
-        pokemonData.results.map((pokemon: any) =>
-          getPokemonFromApi(pokemon.url)
-        )
-      );
-      setPokemon((oldData) => [...oldData, ...pokemonData]);
-      setLoading(checkContentFillWindow());
+    const handleResize = () => {
+      setLoading(getScrollPosition(containerRef) == 0);
     };
-    next && loading && getPokemon();
+
+    window.addEventListener("resize", handleResize);
+  });
+
+  useEffect(() => {
+    setLoading(getScrollPosition(containerRef) == 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pokemon, loading]);
+  }, [pokemon]);
 
   return (
-    <div className={homeStyles.home}>
+    <div className={homeStyles.home} style={{ background: color }}>
       <List gap={200}>
         {pokemon.map((pokemon) => (
-          <FadeInCard key={pokemon.id}>
+          <FadeInCard key={pokemon.id} containerRef={containerRef}>
             <HoverCard width={300} height={340}>
               <PokeData pokemon={pokemon} />
             </HoverCard>
