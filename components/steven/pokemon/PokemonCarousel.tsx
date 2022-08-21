@@ -79,7 +79,7 @@ const PokemonCarousel = ({ stat }: any) => {
       index == pokemon.length - (previewNext + 1 + previewPrev) &&
       setLoading(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index]);
+  }, [index, pokemon]);
 
   return (
     <div className={styles.carousel}>
