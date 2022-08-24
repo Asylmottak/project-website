@@ -1,26 +1,39 @@
-import { FC } from "react";
+import { FC, useState, useRef, useEffect } from "react";
 
 import styles from "@/styles/pages/steven/Steven.module.scss";
 import Navbar from "@/components/steven/Navbar";
 import { projectCards } from "@/utils/steven/data";
 import ProjectCard from "@/components/steven/ProjectCard";
 import { WeatherIcon } from "@/components/WeatherIcon";
-import Tilt from "react-parallax-tilt";
-import FadeInCard from "@/components/cards/FadeInCard";
+import Carousel from "@/components/steven/pokemon/Carousel";
 /**
  * Steven's main page
  * @return {JSX.Element} - The JSX code for Steven's page
  */
 const Steven: FC = (): JSX.Element => {
-  const previewCards = projectCards.slice(0, 4);
+  const [_scroll, _setScroll] = useState(true);
+  const scroll = useRef(_scroll);
+  const toggleScroll = () => {
+    scroll.current = false;
+    _setScroll(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", toggleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", toggleScroll);
+    };
+  }, []);
+
   return (
     <div className={styles.steven}>
       <div className={styles.parallax}>
         <Navbar />
-        <div className={styles.weather}>
-          <WeatherIcon size={60} />
-        </div>
-        <div className={styles.content}>
+        <div className={styles.content__wrapper}>
+          <div className={styles.weather}>
+            <WeatherIcon size={60} />
+          </div>
           <div className={styles.text}>
             <h1>Hi! I am Steven</h1>
             <p>
@@ -33,19 +46,8 @@ const Steven: FC = (): JSX.Element => {
               projects.
             </p>
           </div>
-          <div className={styles.previewCards}>
-            {previewCards.map((projectCard, index) => {
-              return (
-                <Tilt key={index}>
-                  <ProjectCard
-                    title={projectCard.title}
-                    imagePath={projectCard.imagePath}
-                    text={projectCard.text}
-                    redirect={projectCard.redirect}
-                  />
-                </Tilt>
-              );
-            })}
+          <div className={styles.scrollWrapper}>
+            <div className={styles[`scroll-${scroll.current}`]} />
           </div>
           <div className={styles.custom_shape_divider_top}>
             <svg
@@ -71,22 +73,22 @@ const Steven: FC = (): JSX.Element => {
             </svg>
           </div>
         </div>
-        <div className={styles.projects}>
-          {/* <h1>All projects</h1> */}
-          <div className={styles.allCards}>
+      </div>
+      <div className={styles.projects}>
+        <div className={styles.allCards}>
+          <Carousel newStyles={styles} loading={false}>
             {projectCards.map((projectCard, index) => {
               return (
-                <FadeInCard key={index}>
-                  <ProjectCard
-                    title={projectCard.title}
-                    imagePath={projectCard.imagePath}
-                    text={projectCard.text}
-                    redirect={projectCard.redirect}
-                  />
-                </FadeInCard>
+                <ProjectCard
+                  title={projectCard.title}
+                  imagePath={projectCard.imagePath}
+                  text={projectCard.text}
+                  redirect={projectCard.redirect}
+                  key={index}
+                />
               );
             })}
-          </div>
+          </Carousel>
         </div>
       </div>
     </div>

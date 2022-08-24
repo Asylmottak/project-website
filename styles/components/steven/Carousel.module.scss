@@ -1,0 +1,271 @@
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+$card-width: 300px;
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 380px;
+  width: 100%;
+
+  &__button {
+    justify-self: flex-end;
+    z-index: 99;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-top: 5px solid white;
+    border-right: 5px solid white;
+    box-shadow: 0 0 0 lightgray;
+    transition: all 200ms ease;
+    cursor: pointer;
+
+    &__left {
+      left: 0;
+      transform: translate3d(0, -50%, 0) rotate(-135deg);
+    }
+
+    &__right {
+      right: 0;
+      transform: translate3d(0, -50%, 0) rotate(45deg);
+    }
+
+    &:hover {
+      border-color: orange;
+      box-shadow: 0.5vmin -0.5vmin 0 white;
+    }
+
+    &:before {
+      // for better hit area
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-40%, -60%) rotate(45deg);
+      width: 200%;
+      height: 200%;
+    }
+  }
+
+  &__items {
+    height: 100%;
+    width: calc(4.7 * $card-width);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__item {
+      position: absolute;
+      transition: all ease-in-out 0.2s;
+
+      &__card {
+        box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 1);
+        border-radius: 16px;
+
+        background-color: #1d1d1d;
+
+        &__content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          border-radius: 16px;
+          font-family: "Pokemon Solid", sans-serif;
+          width: $card-width;
+          padding: 10px;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+        opacity: 1;
+        z-index: 3;
+      }
+
+      &-0 {
+        opacity: 25%;
+        z-index: 1;
+        scale: 0.9;
+        transform: translateX(-2 * $card-width);
+        &:hover {
+          scale: 0.95;
+          transform: translateX(-1.9 * $card-width);
+        }
+      }
+      &-1 {
+        opacity: 40%;
+        z-index: 2;
+        transform: translateX(-0.9 * $card-width);
+        &:hover {
+          scale: 1.05;
+        }
+      }
+      &-2 {
+        opacity: 100%;
+        z-index: 4;
+        scale: 1.1;
+      }
+      &-3 {
+        opacity: 40%;
+        z-index: 2;
+        transform: translateX(0.9 * $card-width);
+        &:hover {
+          scale: 1.05;
+        }
+      }
+      &-4 {
+        opacity: 25%;
+        z-index: 1;
+        scale: 0.9;
+        transform: translateX(2 * $card-width);
+        &:hover {
+          scale: 0.95;
+          transform: translateX(1.9 * $card-width);
+        }
+      }
+
+      &__disabled {
+        visibility: hidden;
+        opacity: 0;
+        scale: 0.7;
+        &-right {
+          transform: translateX(2.7 * $card-width);
+        }
+        &-left {
+          transform: translateX(-2.7 * $card-width);
+        }
+      }
+      &__active {
+        &:hover {
+          scale: 1.1;
+          cursor: pointer;
+        }
+        &:active {
+          scale: 1.5;
+        }
+        &::before {
+          content: "";
+          width: 108%;
+          height: 108%;
+          border-radius: 16px;
+          background-image: linear-gradient(
+            var(--rotate),
+            #5ddcff,
+            #3c67e3 43%,
+            #4e00c2
+          );
+          position: absolute;
+          z-index: -1;
+          filter: blur(4px);
+          top: -4%;
+          left: -4%;
+          animation: spin 2.5s linear infinite;
+        }
+
+        &::after {
+          content: "";
+          top: calc(var(--card-height) / 6);
+          left: 0;
+          right: 0;
+          z-index: -1;
+          height: 100%;
+          width: 100%;
+          margin: 0 auto;
+          filter: blur(calc(var(--card-height) / 6));
+          background-image: linear-gradient(
+            var(--rotate),
+            #5ddcff,
+            #3c67e3 43%,
+            #4e00c2
+          );
+          opacity: 1;
+          transition: opacity 0.5s;
+          animation: spin 2.5s linear infinite;
+        }
+      }
+    }
+
+    @media only screen and (max-width: 1500px) {
+      width: calc(3 * $card-width);
+
+      &__item-0 {
+        transform: translateX(-0.9 * $card-width);
+        visibility: hidden;
+        opacity: 0;
+      }
+      &__item-4 {
+        transform: translateX(0.9 * $card-width);
+        visibility: hidden;
+        opacity: 0;
+      }
+      &__item__disabled {
+        &-right {
+          transform: translateX(0);
+        }
+        &-left {
+          transform: translateX(0);
+        }
+      }
+    }
+    @media only screen and (max-width: 1000px) {
+      width: calc(2.1 * $card-width);
+      &__item-1,
+      &__item-0 {
+        transform: translateX(-0.5 * $card-width);
+      }
+      &__item-3,
+      &__item-4 {
+        transform: translateX(0.5 * $card-width);
+      }
+    }
+
+    @media only screen and (max-width: 750px) {
+      width: calc(1.3 * $card-width);
+      &__item-0,
+      &__item-4 {
+        transform: translateX(0);
+      }
+      &__item-1 {
+        transform: translateX(-0.2 * $card-width);
+        opacity: 0.3;
+      }
+      &__item-3 {
+        transform: translateX(0.2 * $card-width);
+        opacity: 0.3;
+      }
+    }
+    @media only screen and (max-width: 520px) {
+      width: calc(1 * $card-width);
+      scale: 0.8;
+      &__item-1,
+      &__item-3 {
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+  }
+}
+
+@keyframes fadeinPointer {
+  0% {
+    pointer-events: none;
+  }
+  99% {
+    pointer-events: none;
+  }
+  100% {
+    pointer-events: all;
+  }
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}

@@ -1,0 +1,32 @@
+@import "@/styles/imports/colors";
+.drag {
+  cursor: move;
+  z-index: 99999;
+}
+
+.dragging {
+  opacity: 0.1;
+}
+
+.selected {
+  opacity: 0.5;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min-content;
+    height: min-content;
+
+    .content {
+      display: flex;
+    }
+  }
+}

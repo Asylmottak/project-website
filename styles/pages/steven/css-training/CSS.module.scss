@@ -15,29 +15,64 @@
   flex-direction: column;
   align-items: center;
   list-style-type: none;
+  gap: 10rem;
+  margin-top: 10rem;
   margin-bottom: 100vh;
 }
 
 .item {
-  height: 100vh;
-  width: 100vw;
+  min-height: min-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  &__dragdrop {
+    width: 80vw;
+    .wrapper {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      .container {
+        border: solid 5px white;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+  &__item__carousel {
+    width: 100vw;
+    margin: 0;
+  }
 
   &__pokemon {
+    width: 80vw;
     justify-content: flex-start;
-    height: 90vh;
+    background-color: $dark;
+    height: 100vh;
     border-radius: 50px;
     border: solid $white 2px;
-    width: 90%;
+    padding: 7rem;
     overflow-y: scroll;
     position: relative;
     box-shadow: rgba($white, 0.1) 0px 4px 16px, rgba($white, 0.1) 0px 8px 24px,
       rgba($white, 0.1) 0px 16px 56px;
     &::-webkit-scrollbar {
       display: none;
+    }
+
+    .list {
+      padding: 200px 0px 200px 0px;
+      height: 100vh;
+      gap: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      overflow-y: visible;
     }
   }
 }

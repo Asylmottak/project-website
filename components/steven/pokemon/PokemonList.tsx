@@ -3,9 +3,9 @@ import { useEffect, FC } from "react";
 import PokeData from "./PokemonData";
 import Loading from "react-loader-spinner";
 import HoverCard from "@/components/cards/HoverCard";
-import List from "../../List";
 
-import homeStyles from "@/styles/pages/steven/pokemon/Pokemon.module.scss";
+import styles from "@/styles/pages/steven/pokemon/Pokemon.module.scss";
+import cn from "classnames";
 import FadeInCard from "@/components/cards/FadeInCard";
 import usePokemon from "hooks/usePokemon";
 
@@ -19,8 +19,13 @@ const getScrollPosition = (ref: React.MutableRefObject<any>) => {
 interface IPokemonListProps {
   containerRef: React.MutableRefObject<any>;
   color?: string;
+  newStyles?: { [key: string]: string };
 }
-const PokemonList: FC<IPokemonListProps> = ({ containerRef, color }) => {
+const PokemonList: FC<IPokemonListProps> = ({
+  containerRef,
+  color,
+  newStyles,
+}) => {
   const [pokemon, loading, setLoading] = usePokemon();
 
   useEffect(() => {
@@ -47,8 +52,13 @@ const PokemonList: FC<IPokemonListProps> = ({ containerRef, color }) => {
   }, [pokemon]);
 
   return (
-    <div className={homeStyles.home} style={{ background: color }}>
-      <List gap={200}>
+    <div className={styles.home} style={{ background: color }}>
+      <div
+        className={cn({
+          [newStyles?.list || ""]: newStyles?.list,
+          [styles.list]: !newStyles?.list,
+        })}
+      >
         {pokemon.map((pokemon) => (
           <FadeInCard key={pokemon.id} containerRef={containerRef}>
             <HoverCard width={300} height={340}>
@@ -56,7 +66,7 @@ const PokemonList: FC<IPokemonListProps> = ({ containerRef, color }) => {
             </HoverCard>
           </FadeInCard>
         ))}
-      </List>
+      </div>
       <div style={{ marginBottom: "200px" }}>
         {loading && (
           <Loading
