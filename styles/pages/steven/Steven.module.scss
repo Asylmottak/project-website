@@ -230,7 +230,7 @@ $layout_change: 700px; // Width under this value -> change layout
     border-top: 5px solid white;
     border-right: 5px solid white;
     box-shadow: 0 0 0 lightgray;
-    transform: translate3d(0, 0, 0) rotate(135deg);
+    transform: translate3d(-35px, 0, 0) rotate(135deg);
     animation: fade 0.5s;
     transition: all 200ms ease;
     @keyframes fade {
