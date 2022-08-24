@@ -4,7 +4,7 @@
 $project-bg-color: rgba($dark, 1);
 $custom_shape_divider_height: 75px;
 $front_page_min_height: 800px;
-$layout_change: 1400px; // Width under this value -> change layout
+$layout_change: 700px; // Width under this value -> change layout
 .steven {
   font-family: "Red Hat Mono", monospace;
 }
@@ -32,8 +32,12 @@ $layout_change: 1400px; // Width under this value -> change layout
   position: absolute;
   display: flex;
   flex-direction: row;
-  left: 2vw;
-  top: 60px;
+  padding-top: 10px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px; /* Need a specific value to work */
 }
 
 .projects {
@@ -46,14 +50,8 @@ $layout_change: 1400px; // Width under this value -> change layout
   z-index: -1;
 
   .allCards {
-    width: 90%;
-    align-self: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 5em;
-    padding: 5em;
+    width: 100%;
+    margin: 100px 0px 100px 0px;
   }
 
   h1 {
@@ -64,6 +62,7 @@ $layout_change: 1400px; // Width under this value -> change layout
 
 .card {
   position: relative;
+  pointer-events: none;
   display: flex;
   justify-content: top;
   flex-direction: column;
@@ -132,16 +131,12 @@ $layout_change: 1400px; // Width under this value -> change layout
 
   &:hover {
     transition: all 0.3s ease-in-out;
-
-    cursor: pointer;
     &::after {
       display: block;
     }
     h2 {
       color: $yellow;
       transition: all 0.3s ease-in-out;
-      // text-shadow: -1px -1px 0px $white, 1px -1px 0px $white,
-      //   -1px 1px 0px $white, 1px 1px 0px $white;
       font-size: 1.4em;
       font-weight: 900;
     }
@@ -163,25 +158,31 @@ $layout_change: 1400px; // Width under this value -> change layout
   }
 }
 
-.content {
-  min-height: $front_page_min_height;
+.content__wrapper {
   height: 100vh;
   width: 100vw;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-
+  flex-direction: column;
+  align-items: center;
   .text {
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    width: 50%;
-    padding-left: 15em;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    word-wrap: break-word;
+    width: 100%;
+    padding-left: 2em;
+    padding-right: 2em;
+    max-width: 1400px;
+    height: 100%;
+    padding-bottom: 75px;
 
     font-size: clamp(0.7rem, 0.5666rem + 0.5333vw, 1rem);
     p {
       margin: 0;
       font-size: 1.2em;
+      width: 70%;
     }
 
     h1 {
@@ -189,30 +190,115 @@ $layout_change: 1400px; // Width under this value -> change layout
       font-size: 7em;
     }
   }
+}
 
-  .previewCards {
-    width: 50%;
-    display: grid;
-    grid-template-columns: 300px 300px;
-    grid-template-rows: 300px 300px;
-    gap: 3em;
-
-    place-content: center;
+.scrollWrapper {
+  position: relative;
+  .scroll-true {
+    position: absolute;
+    z-index: 99;
+    width: 50px;
+    height: 50px;
+    top: -135px;
+    background: transparent;
+    border-top: 5px solid white;
+    border-right: 5px solid white;
+    box-shadow: 0 0 0 lightgray;
+    transform: translate3d(0, 0, 0) rotate(135deg);
+    animation: bounce 3.5s infinite;
+    transition: all 200ms ease;
+    @keyframes bounce {
+      0% {
+        top: -135px;
+        opacity: 1;
+      }
+      50% {
+        top: -105px;
+        opacity: 0.1;
+      }
+    }
   }
 
-  @media only screen and (max-width: $layout_change) {
-    align-items: center;
-    flex-direction: column;
-
-    .text {
-      padding: 5em;
-      width: 100%;
-      min-height: $front_page_min_height;
-      height: 100vh;
+  .scroll-false {
+    position: absolute;
+    z-index: 99;
+    width: 50px;
+    height: 50px;
+    top: -135px;
+    opacity: 0;
+    background: transparent;
+    border-top: 5px solid white;
+    border-right: 5px solid white;
+    box-shadow: 0 0 0 lightgray;
+    transform: translate3d(0, 0, 0) rotate(135deg);
+    animation: fade 0.5s;
+    transition: all 200ms ease;
+    @keyframes fade {
+      0% {
+        top: -135px;
+        opacity: 1;
+      }
+      100% {
+        top: -105px;
+        opacity: 0;
+      }
     }
+  }
+}
 
-    .previewCards {
-      display: none;
+.carousel {
+  &__items {
+    &__item {
+      &__card {
+        width: fit-content;
+        height: fit-content;
+      }
+
+      &__active {
+        transition: all 0.3s ease-in-out;
+
+        .card {
+          pointer-events: all;
+
+          &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            border-radius: 5%;
+            top: -10px;
+            left: -12px;
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+            border: 2px dashed rgba($green, 0.5);
+          }
+          h2 {
+            color: $yellow;
+            transition: all 0.3s ease-in-out;
+            transition-delay: 0.2s;
+            // text-shadow: -1px -1px 0px $white, 1px -1px 0px $white,
+            //   -1px 1px 0px $white, 1px 1px 0px $white;
+            font-size: 1.4em;
+            font-weight: 900;
+          }
+
+          hr {
+            transition: width 0.3s ease-in-out;
+            transition-delay: 0.2s;
+            width: 90%;
+            z-index: 1;
+          }
+
+          p {
+            transition: color 0.6s ease-in-out;
+            transition-delay: 0.2s;
+            color: rgb(224, 224, 224);
+          }
+
+          img {
+            filter: brightness(0.5) blur(1px);
+          }
+        }
+      }
     }
   }
 }
@@ -234,20 +320,5 @@ $layout_change: 1400px; // Width under this value -> change layout
   }
   path {
     fill: $project-bg-color;
-  }
-}
-
-@media only screen and (max-width: $layout_change) {
-  .weather {
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100px; /* Need a specific value to work */
-  }
-
-  /* Hide shape divider for small screens*/
-  .custom_shape_divider_top {
-    display: none;
   }
 }
