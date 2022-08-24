@@ -12,6 +12,8 @@ interface IState {
   dragToIndex: number;
   dragFromIndex: number;
   swap: boolean;
+  touch: boolean;
+  firstTouch: boolean;
 }
 
 /**
@@ -25,6 +27,8 @@ const DragAndDrop: FC<IDragAndDropProps> = ({ children, newStyles }) => {
     dragToIndex: 0,
     dragFromIndex: 0,
     swap: false,
+    touch: false,
+    firstTouch: true,
   });
   const state = useRef(_state);
   const setState = (data: IState) => {
@@ -42,6 +46,73 @@ const DragAndDrop: FC<IDragAndDropProps> = ({ children, newStyles }) => {
     });
   };
 
+  const handleStart = (item: any) => {
+    console.log("start", state.current);
+    if (
+      (state.current.firstTouch && state.current.touch) ||
+      !state.current.touch
+    ) {
+      item.classList.add(
+        cn({
+          [newStyles?.dragging || ""]: newStyles?.dragging,
+          [styles.dragging]: !newStyles?.dragging,
+        })
+      );
+    }
+    state.current.dragFromIndex = containersRef.current.indexOf(
+      containersRef.current.find((container: any) => {
+        return container.firstChild.classList.contains(
+          cn({
+            [newStyles?.dragging || ""]: newStyles?.dragging,
+            [styles.dragging]: !newStyles?.dragging,
+          })
+        );
+      })
+    );
+  };
+
+  const handleEnd = (item: any) => {
+    console.log("end", state.current);
+    if (!state.current.touch) {
+      item.classList.remove(
+        cn({
+          [newStyles?.dragging || ""]: newStyles?.dragging,
+          [styles.dragging]: !newStyles?.dragging,
+        })
+      );
+    }
+
+    if (state.current.swap) {
+      if (state.current.touch && !state.current.firstTouch) {
+        itemsRef.current[state.current.dragFromIndex].classList.remove(
+          cn({
+            [newStyles?.dragging || ""]: newStyles?.dragging,
+            [styles.dragging]: !newStyles?.dragging,
+          })
+        );
+        state.current.dragToIndex = itemsRef.current.indexOf(item);
+        containersRef.current[
+          state.current.dragToIndex
+        ].firstChild.classList.remove(styles.selected);
+        containersRef.current[state.current.dragFromIndex].append(
+          containersRef.current[state.current.dragToIndex].firstChild
+        );
+        containersRef.current[state.current.dragToIndex].append(
+          itemsRef.current[state.current.dragFromIndex]
+        );
+      } else if (!state.current.touch) {
+        containersRef.current[
+          state.current.dragToIndex
+        ].firstChild.classList.remove(styles.selected);
+        containersRef.current[state.current.dragFromIndex].append(
+          containersRef.current[state.current.dragToIndex].firstChild
+        );
+        containersRef.current[state.current.dragToIndex].append(item);
+      }
+      updateItemRefOrder();
+    }
+  };
+
   useEffect(() => {
     children &&
       itemsRef.current.forEach((item: any, i: number) => {
@@ -50,43 +121,21 @@ const DragAndDrop: FC<IDragAndDropProps> = ({ children, newStyles }) => {
           state.current.swap = !state.current.swap;
         });
 
-        item.addEventListener("dragstart", () => {
-          item.classList.add(
-            cn({
-              [newStyles?.dragging || ""]: newStyles?.dragging,
-              [styles.dragging]: !newStyles?.dragging,
-            })
-          );
-          state.current.dragFromIndex = containersRef.current.indexOf(
-            containersRef.current.find((container: any) => {
-              return container.firstChild.classList.contains(
-                cn({
-                  [newStyles?.dragging || ""]: newStyles?.dragging,
-                  [styles.dragging]: !newStyles?.dragging,
-                })
-              );
-            })
-          );
+        item.addEventListener("touchstart", () => {
+          state.current.swap = true;
+          state.current.touch = true;
+          handleStart(item);
         });
 
-        item.addEventListener("dragend", () => {
-          item.classList.remove(
-            cn({
-              [newStyles?.dragging || ""]: newStyles?.dragging,
-              [styles.dragging]: !newStyles?.dragging,
-            })
-          );
-          if (state.current.swap) {
-            containersRef.current[
-              state.current.dragToIndex
-            ].firstChild.classList.remove(styles.selected);
-            containersRef.current[state.current.dragFromIndex].append(
-              containersRef.current[state.current.dragToIndex].firstChild
-            );
-            containersRef.current[state.current.dragToIndex].append(item);
-            updateItemRefOrder();
-          }
+        item.addEventListener("touchend", () => {
+          handleEnd(item);
+          state.current.touch = false;
+          state.current.firstTouch = !state.current.firstTouch;
         });
+
+        item.addEventListener("dragstart", () => handleStart(item));
+
+        item.addEventListener("dragend", () => handleEnd(item));
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemsRef, children]);
@@ -96,27 +145,32 @@ const DragAndDrop: FC<IDragAndDropProps> = ({ children, newStyles }) => {
       container.addEventListener("dragover", (e: Event) => {
         e.preventDefault();
         if (state.current.swap) {
-          setState({
-            ...state.current,
-            dragToIndex: dragToIndex,
-          });
-          containersRef.current.forEach((container: any, index: number) => {
-            if (index == dragToIndex) {
-              container.firstChild.classList.add(
-                cn({
-                  [newStyles?.selected || ""]: newStyles?.selected,
-                  [styles.selected]: !newStyles?.selected,
-                })
-              );
-            } else {
-              container.firstChild.classList.remove(
-                cn({
-                  [newStyles?.selected || ""]: newStyles?.selected,
-                  [styles.selected]: !newStyles?.selected,
-                })
-              );
-            }
-          });
+          if (
+            !state.current.touch ||
+            (state.current.touch && !state.current.firstTouch)
+          ) {
+            setState({
+              ...state.current,
+              dragToIndex: dragToIndex,
+            });
+            containersRef.current.forEach((container: any, index: number) => {
+              if (index == dragToIndex) {
+                container.firstChild.classList.add(
+                  cn({
+                    [newStyles?.selected || ""]: newStyles?.selected,
+                    [styles.selected]: !newStyles?.selected,
+                  })
+                );
+              } else {
+                container.firstChild.classList.remove(
+                  cn({
+                    [newStyles?.selected || ""]: newStyles?.selected,
+                    [styles.selected]: !newStyles?.selected,
+                  })
+                );
+              }
+            });
+          }
         } else {
           const dragElement = itemsRef.current.find((item: any) => {
             return item.classList.contains(
