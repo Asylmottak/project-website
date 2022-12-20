@@ -118,9 +118,9 @@ const Steven: FC = (): JSX.Element => {
                     <div className={styles.grid__element__card__title}>
                       {projectCard.title}
                     </div>
-                    {/* <div className={styles.grid__element__card__text}>
+                    <div className={styles.grid__element__card__text}>
                       {projectCard.text}
-                    </div> */}
+                    </div>
                   </div>
                 );
               })}
