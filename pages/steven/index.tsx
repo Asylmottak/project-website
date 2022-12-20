@@ -1,11 +1,11 @@
 import { FC, useState, useRef, useEffect } from "react";
+import Image from "next/image";
 
 import styles from "@/styles/pages/steven/Steven.module.scss";
 import Navbar from "@/components/steven/Navbar";
 import { projectCards } from "@/utils/steven/data";
-import ProjectCard from "@/components/steven/ProjectCard";
 import { WeatherIcon } from "@/components/WeatherIcon";
-import Carousel from "@/components/steven/pokemon/Carousel";
+import UtilFunctions from "@/utils/functions";
 /**
  * Steven's main page
  * @return {JSX.Element} - The JSX code for Steven's page
@@ -76,19 +76,56 @@ const Steven: FC = (): JSX.Element => {
       </div>
       <div className={styles.projects}>
         <div className={styles.allCards}>
-          <Carousel newStyles={styles} loading={false}>
-            {projectCards.map((projectCard, index) => {
+          <div className={styles.grid}>
+            {projectCards.slice(0, 7).map((projectCard, index) => {
               return (
-                <ProjectCard
-                  title={projectCard.title}
-                  imagePath={projectCard.imagePath}
-                  text={projectCard.text}
-                  redirect={projectCard.redirect}
-                  key={index}
-                />
+                <div className={styles.grid__element} key={index}>
+                  <div
+                    className={styles.grid__element__card}
+                    key={index}
+                    onClick={() => UtilFunctions.redirect(projectCard.redirect)}
+                  >
+                    <Image
+                      src={projectCard.imagePath}
+                      layout={"fill"}
+                      priority
+                      alt={projectCard.imagePath}
+                    />
+                    <div className={styles.grid__element__card__title}>
+                      {projectCard.title}
+                    </div>
+                    <div className={styles.grid__element__card__text}>
+                      {projectCard.text}
+                    </div>
+                  </div>
+                </div>
               );
             })}
-          </Carousel>
+            <div className={styles.grid__element}>
+              {projectCards.slice(7, 10).map((projectCard, index) => {
+                return (
+                  <div
+                    className={styles.grid__element__card}
+                    key={index}
+                    onClick={() => UtilFunctions.redirect(projectCard.redirect)}
+                  >
+                    <Image
+                      src={projectCard.imagePath}
+                      layout={"fill"}
+                      priority
+                      alt={projectCard.imagePath}
+                    />
+                    <div className={styles.grid__element__card__title}>
+                      {projectCard.title}
+                    </div>
+                    {/* <div className={styles.grid__element__card__text}>
+                      {projectCard.text}
+                    </div> */}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </div>

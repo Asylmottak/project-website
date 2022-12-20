@@ -47,7 +47,6 @@ const DragAndDrop: FC<IDragAndDropProps> = ({ children, newStyles }) => {
   };
 
   const handleStart = (item: any) => {
-    console.log("start", state.current);
     if (
       (state.current.firstTouch && state.current.touch) ||
       !state.current.touch
@@ -72,7 +71,6 @@ const DragAndDrop: FC<IDragAndDropProps> = ({ children, newStyles }) => {
   };
 
   const handleEnd = (item: any) => {
-    console.log("end", state.current);
     if (!state.current.touch) {
       item.classList.remove(
         cn({
