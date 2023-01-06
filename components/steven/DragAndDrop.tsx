@@ -230,10 +230,9 @@ const DragAndDrop: FC<IDragAndDropProps> = ({ children, newStyles }) => {
                 [styles.container]: !newStyles?.container,
               })}
               ref={(el) => (containersRef.current[i] = el)}
-              key={item.id}
+              key={i}
             >
               <div
-                key={item.id}
                 className={cn(styles.drag, {
                   [newStyles?.content || ""]: newStyles?.content,
                   [styles.content]: !newStyles?.content,

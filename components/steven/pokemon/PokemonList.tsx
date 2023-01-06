@@ -1,13 +1,12 @@
 import { useEffect, FC } from "react";
 
-import PokeData from "./PokemonData";
 import Loading from "react-loader-spinner";
-import HoverCard from "@/components/cards/HoverCard";
 
 import styles from "@/styles/pages/steven/pokemon/Pokemon.module.scss";
 import cn from "classnames";
 import FadeInCard from "@/components/cards/FadeInCard";
 import usePokemon from "hooks/usePokemon";
+import PokemonCard from "./PokemonCard";
 
 const getScrollPosition = (ref: React.MutableRefObject<any>) => {
   const container = ref?.current;
@@ -59,11 +58,9 @@ const PokemonList: FC<IPokemonListProps> = ({
           [styles.list]: !newStyles?.list,
         })}
       >
-        {pokemon.map((pokemon) => (
-          <FadeInCard key={pokemon.id} containerRef={containerRef}>
-            <HoverCard width={300} height={340}>
-              <PokeData pokemon={pokemon} />
-            </HoverCard>
+        {pokemon.map((pokemon, idx) => (
+          <FadeInCard containerRef={containerRef} key={idx}>
+            <PokemonCard pokemon={pokemon} />
           </FadeInCard>
         ))}
       </div>
