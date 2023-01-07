@@ -47,7 +47,6 @@ const DragAndDrop: FC<IDragAndDropProps> = ({ children, newStyles }) => {
   };
 
   const handleStart = (item: any) => {
-    console.log("start", state.current);
     if (
       (state.current.firstTouch && state.current.touch) ||
       !state.current.touch
@@ -72,7 +71,6 @@ const DragAndDrop: FC<IDragAndDropProps> = ({ children, newStyles }) => {
   };
 
   const handleEnd = (item: any) => {
-    console.log("end", state.current);
     if (!state.current.touch) {
       item.classList.remove(
         cn({
@@ -232,10 +230,9 @@ const DragAndDrop: FC<IDragAndDropProps> = ({ children, newStyles }) => {
                 [styles.container]: !newStyles?.container,
               })}
               ref={(el) => (containersRef.current[i] = el)}
-              key={item.id}
+              key={i}
             >
               <div
-                key={item.id}
                 className={cn(styles.drag, {
                   [newStyles?.content || ""]: newStyles?.content,
                   [styles.content]: !newStyles?.content,

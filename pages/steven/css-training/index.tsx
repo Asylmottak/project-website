@@ -4,12 +4,11 @@ import Navbar from "@/components/steven/Navbar";
 
 import styles from "@/styles/pages/steven/css-training/CSS.module.scss";
 import PokemonList from "@/components/steven/pokemon/PokemonList";
-import Carousel from "@/components/steven/pokemon/Carousel";
+import Carousel from "@/components/steven/Carousel";
 import DragAndDrop from "@/components/steven/DragAndDrop";
 import usePokemon from "hooks/usePokemon";
-import FadeInCard from "@/components/cards/FadeInCard";
-import HoverCard from "@/components/cards/HoverCard";
-import PokeData from "@/components/steven/pokemon/PokemonData";
+import SidebarPage from "@/components/steven/SidebarPage";
+import PokemonCard from "@/components/steven/pokemon/PokemonCard";
 
 /**
  * Index component
@@ -23,39 +22,52 @@ const Index = (): JSX.Element => {
   return (
     <div className={styles.home}>
       <Navbar />
-      <ul className={styles.container}>
-        <li
-          className={`${styles.item__dragdrop} ${styles.item}`}
-          ref={containerRef}
-        >
-          <DragAndDrop newStyles={styles}>
-            {pokemon.slice(0, 8).map((pokemon) => (
-              <FadeInCard key={pokemon.id} containerRef={containerRef}>
-                <HoverCard width={300} height={340}>
-                  <PokeData pokemon={pokemon} />
-                </HoverCard>
-              </FadeInCard>
-            ))}
-          </DragAndDrop>
-        </li>
-        <li className={`${styles.item__item__carousel} ${styles.item}`}>
-          <Carousel
-            newStyles={styles}
-            loading={loading}
-            setLoading={setLoading}
-          >
-            {pokemon.map((pokemon) => (
-              <PokeData pokemon={pokemon} key={pokemon.id} />
-            ))}
-          </Carousel>
-        </li>
-        <li
-          className={`${styles.item__pokemon} ${styles.item}`}
-          ref={pokemonRef}
-        >
-          <PokemonList containerRef={pokemonRef} newStyles={styles} />
-        </li>
-      </ul>
+      <SidebarPage
+        items={[
+          {
+            title: "Drag & Drop",
+            render: (
+              <div
+                className={`${styles.item__dragdrop} ${styles.item}`}
+                ref={containerRef}
+              >
+                <DragAndDrop newStyles={styles}>
+                  {pokemon.slice(0, 8).map((pokemon) => (
+                    <PokemonCard key={pokemon.id} pokemon={pokemon} />
+                  ))}
+                </DragAndDrop>
+              </div>
+            ),
+          },
+          {
+            title: "Carousel",
+            render: (
+              <div className={`${styles.item__item__carousel} ${styles.item}`}>
+                <Carousel
+                  newStyles={styles}
+                  loading={loading}
+                  setLoading={setLoading}
+                >
+                  {pokemon.map((pokemon) => (
+                    <PokemonCard key={pokemon.id} pokemon={pokemon} />
+                  ))}
+                </Carousel>
+              </div>
+            ),
+          },
+          {
+            title: "Item list",
+            render: (
+              <div
+                className={`${styles.item__pokemon} ${styles.item}`}
+                ref={pokemonRef}
+              >
+                <PokemonList containerRef={pokemonRef} newStyles={styles} />
+              </div>
+            ),
+          },
+        ]}
+      />
     </div>
   );
 };
