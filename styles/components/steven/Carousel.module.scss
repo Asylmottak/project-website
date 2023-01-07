@@ -9,10 +9,11 @@
   justify-content: center;
   height: 100%;
   max-width: 100%;
+  position: relative;
 
   &__button {
     flex-shrink: 0;
-    justify-self: flex-end;
+    position: absolute;
     z-index: 99;
     top: 50%;
     width: 20px;
@@ -25,12 +26,12 @@
     cursor: pointer;
 
     &__left {
-      left: 0;
+      left: 10px;
       transform: translate3d(5px, -50%, 0) rotate(-135deg);
     }
 
     &__right {
-      right: 0;
+      right: 10px;
       transform: translate3d(-5px, -50%, 0) rotate(45deg);
     }
 
@@ -64,6 +65,7 @@
         opacity: 1;
         z-index: 3;
       }
+      flex-shrink: 10;
       --opacity: 100%;
       --z-index: 1;
       --scale: 1;
@@ -89,8 +91,8 @@
       &:nth-child(1) {
         --opacity: 25%;
         --z-index: 1;
-        --scale: 0.9;
-        --transform: 20px;
+        --scale: 0.8;
+        --transform: 35px;
 
         --left-opacity: 0%;
         --left-z-index: 0;
@@ -99,7 +101,7 @@
 
         --right-opacity: 40%;
         --right-z-index: 2;
-        --right-scale: 1;
+        --right-scale: 0.9;
         --right-transform: 50px;
 
         opacity: (calc(var(--opacity)));
@@ -113,7 +115,7 @@
       &:nth-child(2) {
         --opacity: 40%;
         --z-index: 2;
-        --scale: 1;
+        --scale: 0.9;
 
         opacity: (calc(var(--opacity)));
         z-index: (calc(var(--z-index)));
@@ -121,12 +123,12 @@
 
         --left-opacity: 25%;
         --left-z-index: 1;
-        --left-scale: 0.9;
+        --left-scale: 0.8;
         --left-transform: -50px;
 
         --right-opacity: 100%;
         --right-z-index: 4;
-        --right-scale: 1.1;
+        --right-scale: 1;
         --right-transform: 50px;
         &:hover {
           scale: 1.05;
@@ -135,7 +137,7 @@
       &:nth-child(3) {
         --opacity: 100%;
         --z-index: 4;
-        --scale: 1.1;
+        --scale: 1;
 
         opacity: (calc(var(--opacity)));
         z-index: (calc(var(--z-index)));
@@ -143,20 +145,17 @@
 
         --left-opacity: 40%;
         --left-z-index: 2;
-        --left-scale: 1;
+        --left-scale: 0.9;
         --left-transform: -50px;
 
         --right-opacity: 40%;
         --right-z-index: 2;
-        --right-scale: 1;
+        --right-scale: 0.9;
         --right-transform: 50px;
 
         &:hover {
-          scale: 1.1;
+          scale: 1;
           cursor: pointer;
-        }
-        &:active {
-          scale: 1.5;
         }
         &::before {
           content: "";
@@ -201,7 +200,7 @@
       &:nth-child(4) {
         --opacity: 40%;
         --z-index: 2;
-        --scale: 1;
+        --scale: 0.9;
 
         opacity: (calc(var(--opacity)));
         z-index: (calc(var(--z-index)));
@@ -209,12 +208,12 @@
 
         --left-opacity: 100%;
         --left-z-index: 4;
-        --left-scale: 1.1;
+        --left-scale: 1;
         --left-transform: -50px;
 
         --right-opacity: 25%;
         --right-z-index: 1;
-        --right-scale: 0.9;
+        --right-scale: 0.8;
         --right-transform: 50px;
         &:hover {
           scale: 1.05;
@@ -223,8 +222,8 @@
       &:nth-child(5) {
         --opacity: 25%;
         --z-index: 1;
-        --scale: 0.9;
-        --transform: -20px;
+        --scale: 0.8;
+        --transform: -35px;
 
         opacity: (calc(var(--opacity)));
         z-index: (calc(var(--z-index)));
@@ -233,7 +232,7 @@
 
         --left-opacity: 40%;
         --left-z-index: 2;
-        --left-scale: 1;
+        --left-scale: 0.9;
         --left-transform: -50px;
 
         --right-opacity: 0%;

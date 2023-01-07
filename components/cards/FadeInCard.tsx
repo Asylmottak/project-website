@@ -67,7 +67,7 @@ const FadeInCard: FC<IFadeInCardProps> = ({
     <div
       ref={ref}
       className={doFade ? styles.fade : styles.hidden}
-      // onLoad={handleFade}
+      onLoad={handleFade}
     >
       {children}
     </div>

@@ -19,9 +19,6 @@ const Navbar: FC = (): JSX.Element => {
           <Link href="/steven">Home</Link>
         </li>
         <li>
-          <Link href="/steven/about">About</Link>
-        </li>
-        <li>
           <Link href="/steven/pokemon">Pokemon</Link>
         </li>
         <li>

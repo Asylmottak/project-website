@@ -14,7 +14,7 @@ interface IPokemonCardProps {
 
 const PokemonCard: FC<IPokemonCardProps> = ({ pokemon }) => {
   return (
-    <HoverCard width={150} height={200}>
+    <HoverCard width={190} height={240}>
       <>
         <div className={styles.cardImage}>
           {
